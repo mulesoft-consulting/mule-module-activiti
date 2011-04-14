@@ -1,1 +1,2 @@
-http\://www.mulesoft.org/schema/mule/activiti/3.1/mule-activiti.xsd=META-INF/mule-activiti.xsd
+http\://www.mulesoft.org/schema/mule/activiti-remote/3.1/mule-activiti-remote.xsd=META-INF/mule-activiti-remote.xsd
+http\://www.mulesoft.org/schema/mule/activiti-embedded/3.1/mule-activiti-embedded.xsd=META-INF/mule-activiti-embedded.xsd

@@ -18,11 +18,8 @@ public class ProcessInstance implements Serializable
     private static final long serialVersionUID = -8055270881231310548L;
 
     private String id;
-
     private String processDefinitionId;
-
     private List<String> activityNames;
-
     private boolean ended;
 
     public String getId()

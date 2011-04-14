@@ -18,17 +18,11 @@ public class Task implements Serializable
     private static final long serialVersionUID = 404948635324847864L;
 
     private String id;
-
     private String name;
-
     private String description;
-
     private int priority;
-
     private String assignee;
-
     private int executionId;
-
     private String formResourceKey;
 
     public String getId()
