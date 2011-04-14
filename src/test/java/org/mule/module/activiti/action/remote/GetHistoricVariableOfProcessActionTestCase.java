@@ -14,6 +14,7 @@ import org.mule.DefaultMuleMessage;
 import org.mule.api.MuleMessage;
 import org.mule.api.client.MuleClient;
 import org.mule.api.transport.PropertyScope;
+import org.mule.module.activiti.ActivitiTestUtils;
 import org.mule.tck.FunctionalTestCase;
 
 import java.util.HashMap;
@@ -34,10 +35,12 @@ public class GetHistoricVariableOfProcessActionTestCase extends FunctionalTestCa
         DefaultMuleMessage message = new DefaultMuleMessage("", muleContext);
         
         Map<String, Object> parameterMap = new HashMap<String, Object>();
-        parameterMap.put("processDefinitionId", "multiply:1:112");
+        parameterMap.put("processDefinitionId", ActivitiTestUtils.MULTIPLY_PROCESS_DEF_ID);
         parameterMap.put("number", 2);
         
         message.setProperty("createProcessParameters", parameterMap , PropertyScope.OUTBOUND);
+        message.setProperty("historicProcessInstanceId", ActivitiTestUtils.HISTORIC_PROCESS_INSTANCE_ID, PropertyScope.OUTBOUND);
+        message.setProperty("historicActivitiInstanceId", ActivitiTestUtils.HISTORIC_ACTIVITI_INSTANCE_ID, PropertyScope.OUTBOUND);
         
         MuleMessage responseMessage = client.send("vm://in", message);
         assertNotNull(responseMessage);

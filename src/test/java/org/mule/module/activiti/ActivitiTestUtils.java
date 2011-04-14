@@ -12,18 +12,10 @@ package org.mule.module.activiti;
 
 public class ActivitiTestUtils
 {
-    public static final String ACTIVITI_LAST_VERSION = "5.4";
+    public static final String MULTIPLY_PROCESS_DEF_ID = "multiply:1:114";
+    public static final String MULTIPLY_WAIT_PROCESS_DEF_ID = "multiplyWait:1:115";
+    public static final String MULTIPLY_WITH_CANDIDATE_PROCESS_DEF_ID = "multiplyWithCandidate:1:116";
 
-    public static String getActivitiVersion()
-    {
-        String version = System.getProperty("activiti.version");
-        if (version == null)
-        {
-            return ACTIVITI_LAST_VERSION;
-        }
-        else
-        {
-            return version;
-        }
-    }
+    public static final String HISTORIC_PROCESS_INSTANCE_ID = "165";
+    public static final int    HISTORIC_ACTIVITI_INSTANCE_ID = 169;
 }

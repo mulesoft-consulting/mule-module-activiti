@@ -12,6 +12,9 @@ package org.mule.module.activiti.action.embedded;
 
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleException;
+import org.mule.module.activiti.util.BeanUtils;
+
+import org.activiti.engine.task.Task;
 
 public class GetTask extends AbstractEmbeddedActivitiAction
 {
@@ -19,8 +22,12 @@ public class GetTask extends AbstractEmbeddedActivitiAction
 
     public MuleEvent process(MuleEvent event) throws MuleException
     {
-        // TODO Auto-generated method stub
-        return null;
+        String taskId = (String) event.getMuleContext().getExpressionManager().evaluate(this.taskIdExpression, event.getMessage());
+        Task task = (Task) this.getTaskService().createTaskQuery().taskId(taskId).singleResult();
+        org.mule.module.activiti.action.model.Task copyTask = new org.mule.module.activiti.action.model.Task();
+        BeanUtils.safeCopyProperties(copyTask, task);
+        event.getMessage().setPayload(copyTask);
+        return event;
     }
     
     public String getTaskIdExpression()

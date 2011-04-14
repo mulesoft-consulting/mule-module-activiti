@@ -15,33 +15,35 @@ import org.mule.api.MuleMessage;
 import org.mule.api.client.MuleClient;
 import org.mule.api.transport.PropertyScope;
 import org.mule.module.activiti.ActivitiTestUtils;
-import org.mule.module.activiti.action.model.ProcessInstance;
+import org.mule.module.activiti.action.model.Task;
 import org.mule.tck.FunctionalTestCase;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateProcessActionTestCase extends FunctionalTestCase
+public class PerformTaskOperationActionTestCase extends FunctionalTestCase
 {
 
     @Override
     protected String getConfigResources()
     {
-        return "org/mule/module/activiti/action/embedded/create-process.xml";
+        return "org/mule/module/activiti/action/embedded/perform-task-operation.xml";
     }
 
-    public void testCreateProcess() throws Exception
+    public void testPerformTaskOperation() throws Exception
     {
         MuleClient client = muleContext.getClient();
         DefaultMuleMessage message = new DefaultMuleMessage("", muleContext);
+        
         Map parameterMap = new HashMap();
-        parameterMap.put("processDefinitionId", ActivitiTestUtils.MULTIPLY_WAIT_PROCESS_DEF_ID);
+        parameterMap.put("processDefinitionId", ActivitiTestUtils.MULTIPLY_WITH_CANDIDATE_PROCESS_DEF_ID);
         message.setProperty("createProcessParameters", parameterMap , PropertyScope.OUTBOUND);
         
         MuleMessage responseMessage = client.send("vm://in", message);
         assertNotNull(message);
         
-        ProcessInstance instance = (ProcessInstance) responseMessage.getPayload();
-        assertNotNull(instance);
+        Task task = (Task) responseMessage.getPayload();
+        assertNotNull(task);
+        assertEquals("kermit", task.getAssignee());
     }
 }

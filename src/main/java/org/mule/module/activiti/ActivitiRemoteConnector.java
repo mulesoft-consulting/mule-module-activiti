@@ -26,7 +26,7 @@ import org.apache.commons.httpclient.HttpState;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.apache.commons.httpclient.auth.AuthScope;
 
-public class ActivitiRemoteConnector extends HttpConnector
+public class ActivitiRemoteConnector extends HttpConnector implements ActivitiConnector
 {
 
     public static final String ACTIVITI_REMOTE = "activiti-remote";

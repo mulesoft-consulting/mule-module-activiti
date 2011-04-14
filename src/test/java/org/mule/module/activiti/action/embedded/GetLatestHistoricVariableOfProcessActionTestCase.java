@@ -15,33 +15,33 @@ import org.mule.api.MuleMessage;
 import org.mule.api.client.MuleClient;
 import org.mule.api.transport.PropertyScope;
 import org.mule.module.activiti.ActivitiTestUtils;
-import org.mule.module.activiti.action.model.ProcessInstance;
 import org.mule.tck.FunctionalTestCase;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateProcessActionTestCase extends FunctionalTestCase
+public class GetLatestHistoricVariableOfProcessActionTestCase extends FunctionalTestCase
 {
 
     @Override
     protected String getConfigResources()
     {
-        return "org/mule/module/activiti/action/embedded/create-process.xml";
+        return "org/mule/module/activiti/action/embedded/get-latest-historic-variable-of-process.xml";
     }
 
-    public void testCreateProcess() throws Exception
+    public void testGetVariable() throws Exception
     {
         MuleClient client = muleContext.getClient();
         DefaultMuleMessage message = new DefaultMuleMessage("", muleContext);
+        
         Map parameterMap = new HashMap();
-        parameterMap.put("processDefinitionId", ActivitiTestUtils.MULTIPLY_WAIT_PROCESS_DEF_ID);
+        parameterMap.put("processDefinitionId", ActivitiTestUtils.MULTIPLY_PROCESS_DEF_ID);
+        parameterMap.put("number", 2);
+        
         message.setProperty("createProcessParameters", parameterMap , PropertyScope.OUTBOUND);
         
         MuleMessage responseMessage = client.send("vm://in", message);
-        assertNotNull(message);
-        
-        ProcessInstance instance = (ProcessInstance) responseMessage.getPayload();
-        assertNotNull(instance);
+        assertNotNull(responseMessage);
+        assertEquals("4", responseMessage.getPayloadAsString());
     }
 }

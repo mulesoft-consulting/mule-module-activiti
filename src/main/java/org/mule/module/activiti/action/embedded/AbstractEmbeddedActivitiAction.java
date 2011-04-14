@@ -13,6 +13,7 @@ package org.mule.module.activiti.action.embedded;
 import org.mule.api.processor.MessageProcessor;
 import org.mule.module.activiti.ActivitiEmbeddedConnector;
 
+import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -22,16 +23,24 @@ public abstract class AbstractEmbeddedActivitiAction implements MessageProcessor
 
     private ActivitiEmbeddedConnector connector;
 
-    public RepositoryService getRepositoryService() {
+    public RepositoryService getRepositoryService()
+    {
         return this.getConnector().getRepositoryService();
     }
-    
-    public RuntimeService getRuntimeService() {
+
+    public RuntimeService getRuntimeService()
+    {
         return this.getConnector().getRuntimeService();
     }
 
-    public TaskService getTaskService() {
+    public TaskService getTaskService()
+    {
         return this.getConnector().getTaskService();
+    }
+
+    public HistoryService getHistoryService()
+    {
+        return this.getConnector().getHistoryService();
     }
 
     public ActivitiEmbeddedConnector getConnector()
@@ -44,5 +53,3 @@ public abstract class AbstractEmbeddedActivitiAction implements MessageProcessor
         this.connector = connector;
     }
 }
-
-

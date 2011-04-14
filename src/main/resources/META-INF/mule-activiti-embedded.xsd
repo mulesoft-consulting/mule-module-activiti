@@ -42,6 +42,13 @@
                 <xsd:attribute name="runtimeService-ref" type="xsd:string" />
                 <xsd:attribute name="taskService-ref" type="xsd:string" />
                 <xsd:attribute name="historyService-ref" type="xsd:string" />
+                <xsd:attribute name="jdbcConnector-ref" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            A reference to the JDBC connector used to connect to Activiti's Database.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
                 <xsd:attribute name="version" type="xsd:string">
                     <xsd:annotation>
                         <xsd:documentation>
@@ -155,6 +162,7 @@
         <xsd:complexContent>
             <xsd:extension base="actionType">
                 <xsd:attribute name="taskIdExpression" type="xsd:string"/>
+                <xsd:attribute name="userExpression" type="xsd:string"/>
                 <xsd:attribute name="operation" type="operationTypes"/>
             </xsd:extension>
         </xsd:complexContent>

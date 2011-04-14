@@ -2,29 +2,25 @@
 <mule 
     xmlns="http://www.mulesoft.org/schema/mule/core" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:activiti="http://www.mulesoft.org/schema/mule/activiti-remote"
+    xmlns:activiti="http://www.mulesoft.org/schema/mule/activiti-embedded"
     xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
     xmlns:script="http://www.mulesoft.org/schema/mule/scripting"
     xmlns:spring="http://www.springframework.org/schema/beans"
     xsi:schemaLocation="
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
-        http://www.mulesoft.org/schema/mule/activiti-remote http://www.mulesoft.org/schema/mule/activiti-remote/3.1/mule-activiti-remote.xsd
+        http://www.mulesoft.org/schema/mule/activiti-embedded http://www.mulesoft.org/schema/mule/activiti-embedded/3.1/mule-activiti-embedded.xsd
         http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd
         http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/3.1/mule-vm.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
     ">
 
     <spring:beans>
-        <spring:import resource="classpath:org/mule/module/activiti/action/remote/connector.xml" />
+        <spring:import resource="classpath:org/mule/module/activiti/action/embedded/connector.xml" />
     </spring:beans>
-
-    <flow name="get-historic-variable-of-process">
+    
+    <flow name="list-candidate-group-tasks">
         <vm:inbound-endpoint path="in" exchange-pattern="request-response" />
-        <activiti:get-historic-variable-of-process 
-            processInstanceIdExpression="#[header:INBOUND:historicProcessInstanceId]" 
-            variableExpression="#[string:number]"
-            activitiInstanceIdExpression="#[header:INBOUND:historicActivitiInstanceId]"
-            connector-ref="actServer" />
+        <activiti:list-candidate-group-tasks connector-ref="actServer" candidateGroupExpression="#[payload]"/>
     </flow>
 
 </mule>

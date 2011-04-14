@@ -14,6 +14,7 @@ import org.mule.DefaultMuleMessage;
 import org.mule.api.MuleMessage;
 import org.mule.api.client.MuleClient;
 import org.mule.api.transport.PropertyScope;
+import org.mule.module.activiti.ActivitiTestUtils;
 import org.mule.module.activiti.action.model.ProcessInstance;
 import org.mule.tck.FunctionalTestCase;
 
@@ -34,7 +35,7 @@ public class CreateProcessActionTestCase extends FunctionalTestCase
         MuleClient client = muleContext.getClient();
         DefaultMuleMessage message = new DefaultMuleMessage("", muleContext);
         Map parameterMap = new HashMap();
-        parameterMap.put("processDefinitionId", "multiplyWait:1:192");
+        parameterMap.put("processDefinitionId", ActivitiTestUtils.MULTIPLY_WAIT_PROCESS_DEF_ID);
         message.setProperty("createProcessParameters", parameterMap , PropertyScope.OUTBOUND);
         
         MuleMessage responseMessage = client.send("vm://in", message);

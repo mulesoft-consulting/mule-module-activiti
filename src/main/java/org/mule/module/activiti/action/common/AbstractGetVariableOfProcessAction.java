@@ -8,12 +8,13 @@
  * LICENSE.txt file.
  */
 
-package org.mule.module.activiti.action.remote;
+package org.mule.module.activiti.action.common;
 
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleException;
 import org.mule.api.MuleRuntimeException;
 import org.mule.api.processor.MessageProcessor;
+import org.mule.module.activiti.ActivitiConnector;
 import org.mule.module.activiti.ActivitiRemoteConnector;
 import org.mule.module.activiti.i18n.ActivitiMessages;
 
@@ -28,7 +29,7 @@ public abstract class AbstractGetVariableOfProcessAction implements MessageProce
 {
     protected static final Log logger = LogFactory.getLog(AbstractGetVariableOfProcessAction.class);
 
-    private ActivitiRemoteConnector connector;
+    private ActivitiConnector connector;
     private String processInstanceIdExpression;
     private String variableExpression;
     private String query;
@@ -38,12 +39,22 @@ public abstract class AbstractGetVariableOfProcessAction implements MessageProce
     protected abstract String getTypeColumn();
 
     protected Object[] getParameters(MuleEvent event) {
-        String processInstanceId = (String) event.getMuleContext().getExpressionManager().evaluate(
-            this.processInstanceIdExpression, event.getMessage());
-        String variable = (String) event.getMuleContext().getExpressionManager().evaluate(
-            this.variableExpression, event.getMessage());
+        String processInstanceId = this.getProcessInstanceId(event);
+        String variable = this.getVariable(event);
         
         return new Object[]{processInstanceId, variable};
+    }
+
+    private String getVariable(MuleEvent event)
+    {
+        return (String) event.getMuleContext().getExpressionManager().evaluate(
+            this.variableExpression, event.getMessage());
+    }
+
+    private String getProcessInstanceId(MuleEvent event)
+    {
+        return (String) event.getMuleContext().getExpressionManager().evaluate(
+            this.processInstanceIdExpression, event.getMessage());
     }
 
     public MuleEvent process(MuleEvent event) throws MuleException
@@ -121,12 +132,12 @@ public abstract class AbstractGetVariableOfProcessAction implements MessageProce
         this.query = query;
     }
 
-    public ActivitiRemoteConnector getConnector()
+    public ActivitiConnector getConnector()
     {
         return connector;
     }
 
-    public void setConnector(ActivitiRemoteConnector connector)
+    public void setConnector(ActivitiConnector connector)
     {
         this.connector = connector;
     }

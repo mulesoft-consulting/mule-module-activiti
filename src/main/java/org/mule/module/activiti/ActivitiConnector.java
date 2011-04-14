@@ -8,19 +8,16 @@
  * LICENSE.txt file.
  */
 
-package org.mule.module.activiti.action.embedded;
+package org.mule.module.activiti;
 
-import org.mule.api.MuleEvent;
-import org.mule.api.MuleException;
+import org.mule.transport.jdbc.JdbcConnector;
 
-public class GetLatestHistoricVariableOfProcess extends AbstractGetVariableOfProcessAction
+public interface ActivitiConnector
 {
 
-    public MuleEvent process(MuleEvent event) throws MuleException
-    {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    JdbcConnector getJdbcConnector();
+
+    void setJdbcConnector(JdbcConnector jdbcConnector);
 }
 
 

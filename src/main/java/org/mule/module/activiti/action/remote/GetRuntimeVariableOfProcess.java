@@ -10,6 +10,9 @@
 
 package org.mule.module.activiti.action.remote;
 
+import org.mule.module.activiti.action.common.AbstractGetVariableOfProcessAction;
+
+
 public class GetRuntimeVariableOfProcess extends AbstractGetVariableOfProcessAction
 {
     public static final String GET_RUNTIME_VARIABLE_QUERY = "SELECT * FROM act_ru_variable WHERE PROC_INST_ID_ = ? AND NAME_ = ?";

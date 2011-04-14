@@ -14,6 +14,7 @@ import org.mule.DefaultMuleMessage;
 import org.mule.api.MuleMessage;
 import org.mule.api.client.MuleClient;
 import org.mule.api.transport.PropertyScope;
+import org.mule.module.activiti.ActivitiTestUtils;
 import org.mule.tck.FunctionalTestCase;
 
 import java.util.HashMap;
@@ -34,7 +35,7 @@ public class GetRuntimeVariableOfProcessActionTestCase extends FunctionalTestCas
         DefaultMuleMessage message = new DefaultMuleMessage("", muleContext);
         
         Map parameterMap = new HashMap();
-        parameterMap.put("processDefinitionId", "multiplyWait:1:192");
+        parameterMap.put("processDefinitionId", ActivitiTestUtils.MULTIPLY_WAIT_PROCESS_DEF_ID);
         parameterMap.put("number", 2);
         
         message.setProperty("createProcessParameters", parameterMap , PropertyScope.OUTBOUND);

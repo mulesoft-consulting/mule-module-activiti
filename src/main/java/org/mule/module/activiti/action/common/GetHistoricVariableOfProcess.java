@@ -8,7 +8,7 @@
  * LICENSE.txt file.
  */
 
-package org.mule.module.activiti.action.remote;
+package org.mule.module.activiti.action.common;
 
 import org.mule.api.MuleEvent;
 

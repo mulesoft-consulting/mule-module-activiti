@@ -20,7 +20,10 @@
         repositoryService-ref="repositoryService"
         runtimeService-ref="runtimeService"
         taskService-ref="taskService"
-        historyService-ref="historyService" />
+        historyService-ref="historyService"
+        jdbcConnector-ref="jdbcConnector" />
+        
+    <jdbc:connector name="jdbcConnector" pollingFrequency="1000" dataSource-ref="dataSource" queryTimeout="3000" />
 
     <spring:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <spring:property name="driverClassName" value="org.h2.Driver" />
@@ -36,8 +39,9 @@
     <spring:bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
         <spring:property name="dataSource" ref="dataSource" />
         <spring:property name="transactionManager" ref="transactionManager" />
-        <spring:property name="databaseSchemaUpdate" value="true" />
+        <spring:property name="databaseSchemaUpdate" value="false" />
         <spring:property name="jobExecutorActivate" value="false" />
+        <spring:property name="history" value="full" />
     </spring:bean>
 
     <spring:bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">

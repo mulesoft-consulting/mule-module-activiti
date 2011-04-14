@@ -8,7 +8,9 @@
  * LICENSE.txt file.
  */
 
-package org.mule.module.activiti.action.remote;
+package org.mule.module.activiti.action.common;
+
+
 
 public class GetLatestHistoricVariableOfProcess extends AbstractGetVariableOfProcessAction
 {

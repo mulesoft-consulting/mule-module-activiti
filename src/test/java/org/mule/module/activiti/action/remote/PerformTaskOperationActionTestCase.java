@@ -14,6 +14,7 @@ import org.mule.DefaultMuleMessage;
 import org.mule.api.MuleMessage;
 import org.mule.api.client.MuleClient;
 import org.mule.api.transport.PropertyScope;
+import org.mule.module.activiti.ActivitiTestUtils;
 import org.mule.module.activiti.action.model.Task;
 import org.mule.tck.FunctionalTestCase;
 
@@ -35,7 +36,7 @@ public class PerformTaskOperationActionTestCase extends FunctionalTestCase
         DefaultMuleMessage message = new DefaultMuleMessage("", muleContext);
         
         Map parameterMap = new HashMap();
-        parameterMap.put("processDefinitionId", "mixedCandidateUserAndGroupExample:1:41");
+        parameterMap.put("processDefinitionId", ActivitiTestUtils.MULTIPLY_WITH_CANDIDATE_PROCESS_DEF_ID);
         message.setProperty("createProcessParameters", parameterMap , PropertyScope.OUTBOUND);
         
         MuleMessage responseMessage = client.send("vm://in", message);
