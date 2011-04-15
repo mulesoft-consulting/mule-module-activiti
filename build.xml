@@ -17,10 +17,24 @@
 		<!-- SET HISTORY TO FULL IN EACH ACTIVITI INSTALATION. CHECK YOUR setup/build/activiti-cfg/activiti.cfg.xml 
 		     SET HISTORY TO FULL IN EACH ACTIVITI INSTALATION. CHECK YOUR setup/files/cfg.activiti/standalone/activiti.cfg.xml -->
 
-		<exec dir="${activiti.home}/activiti-${activiti.version}/setup/" executable="ant" failifexecutionfails="false"  failonerror="false">
+		<exec dir="${activiti.home}/activiti-${activiti.version}/setup/" executable="ant" failifexecutionfails="true"  failonerror="true">
 	      <arg value="demo.start" />
 	    </exec>
-		
+
+		<taskdef name="deploy-bar" classname="org.activiti.engine.impl.ant.DeployBarTask">
+			<classpath>
+				<fileset dir="${activiti.home}/activiti-${activiti.version}/setup/build">
+					<include name="activiti-cfg.jar"/>
+				</fileset>
+				<fileset dir="${activiti.home}/activiti-${activiti.version}/setup/files/dependencies/libs">
+					<include name="*.jar"/>
+					<include name="activiti-engine-${activiti.version}.jar"/>
+					<include name="h2-1.2.132.jar"/>
+					<include name="ibatis-sqlmap-*.jar"/>
+				</fileset>
+			</classpath>
+		</taskdef>
+
 		<deploy-bar file="${activiti.module.home}/src/test/resources/org/activiti/processdefinitions/multiplier.zip" />
 
 		<exec executable="sleep" failifexecutionfails="false" failonerror="false">
@@ -33,18 +47,4 @@
 	      <arg value="-Dactiviti.version=${activiti.version}" />
 	    </exec>
 	</target>
-	
-	<taskdef name="deploy-bar" classname="org.activiti.engine.impl.ant.DeployBarTask">
-		<classpath>
-			<fileset dir="${activiti.home}/activiti-${activiti.version}/setup/build">
-				<include name="activiti-cfg.jar"/>
-			</fileset>
-			<fileset dir="${activiti.home}/activiti-${activiti.version}/setup/files/dependencies/libs">
-				<include name="*.jar"/>
-				<include name="activiti-engine-${activiti.version}.jar"/>
-				<include name="h2-1.2.132.jar"/>
-				<include name="ibatis-sqlmap-*.jar"/>
-			</fileset>
-		</classpath>
-	</taskdef>
 </project>

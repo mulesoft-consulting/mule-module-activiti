@@ -26,7 +26,7 @@ public class ListProcessDefinitionsTestCase extends FunctionalTestCase
         return "org/mule/module/activiti/action/remote/list-process-definitions.xml";
     }
 
-    public void testGetProcessDefinitions() throws Exception
+    public void testListProcessDefinitions() throws Exception
     {
         MuleClient client = muleContext.getClient();
         MuleMessage message = client.send("vm://in", new DefaultMuleMessage("", muleContext));

@@ -9,7 +9,7 @@
     xmlns:spring="http://www.springframework.org/schema/beans"
     xsi:schemaLocation="
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
-        http://www.mulesoft.org/schema/mule/activiti-remote http://www.mulesoft.org/schema/mule/activiti-remote/3.1/mule-activiti-remote.xsd
+        http://www.mulesoft.org/schema/mule/activiti-remote http://www.mulesoft.org/schema/mule/activiti-remote/3.2/mule-activiti-remote.xsd
         http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd
         http://www.mulesoft.org/schema/mule/jdbc http://www.mulesoft.org/schema/mule/jdbc/3.1/mule-jdbc.xsd
         http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/3.1/mule-vm.xsd">
