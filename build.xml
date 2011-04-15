@@ -4,15 +4,20 @@
 
 	<property name="activiti.module.home" value="." />
 	
-	<target name="evaluateActivitiModule">
-		
+	<target name="demo.stopAndClean">
 		<exec dir="${activiti.home}/activiti-${activiti.version}/setup/" executable="ant" failifexecutionfails="false" failonerror="false">
 	      <arg value="demo.stop" />
 	    </exec>
 		<exec dir="${activiti.home}/activiti-${activiti.version}/setup/" executable="ant" failifexecutionfails="false" failonerror="false">
 	      <arg value="demo.clean" />
 	    </exec>
-		<exec dir="${activiti.home}/activiti-${activiti.version}/setup/" executable="ant" failifexecutionfails="true"  failonerror="true">
+	</target>
+
+	<target name="evaluateActivitiModule" depends="demo.stopAndClean">
+		<!-- SET HISTORY TO FULL IN EACH ACTIVITI INSTALATION. CHECK YOUR setup/build/activiti-cfg/activiti.cfg.xml 
+		     SET HISTORY TO FULL IN EACH ACTIVITI INSTALATION. CHECK YOUR setup/files/cfg.activiti/standalone/activiti.cfg.xml -->
+
+		<exec dir="${activiti.home}/activiti-${activiti.version}/setup/" executable="ant" failifexecutionfails="false"  failonerror="false">
 	      <arg value="demo.start" />
 	    </exec>
 		
@@ -25,7 +30,7 @@
 		<exec dir="${activiti.module.home}" executable="mvn" failifexecutionfails="false" failonerror="false">
 	      <arg value="clean" />
 	      <arg value="install" />
-	      <arg value="-P${activiti.version}" />
+	      <arg value="-Dactiviti.version=${activiti.version}" />
 	    </exec>
 	</target>
 	
