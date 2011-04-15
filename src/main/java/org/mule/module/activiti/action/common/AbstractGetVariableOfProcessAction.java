@@ -15,7 +15,6 @@ import org.mule.api.MuleException;
 import org.mule.api.MuleRuntimeException;
 import org.mule.api.processor.MessageProcessor;
 import org.mule.module.activiti.ActivitiConnector;
-import org.mule.module.activiti.ActivitiRemoteConnector;
 import org.mule.module.activiti.i18n.ActivitiMessages;
 
 import java.sql.SQLException;

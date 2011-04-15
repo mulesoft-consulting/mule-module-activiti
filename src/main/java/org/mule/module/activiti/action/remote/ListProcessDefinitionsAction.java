@@ -12,13 +12,7 @@ package org.mule.module.activiti.action.remote;
 
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleMessage;
-import org.mule.module.activiti.ActivitiEmbeddedConnector;
-import org.mule.module.activiti.util.BeanUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.activiti.engine.repository.ProcessDefinition;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -26,24 +20,6 @@ import org.apache.commons.logging.LogFactory;
 public class ListProcessDefinitionsAction extends AbstractRemoteActivitiAction<GetMethod>
 {
     protected final Log logger = LogFactory.getLog(getClass());
-
-    public MuleEvent processEmbedded(ActivitiEmbeddedConnector connector, MuleEvent event)
-    {
-        List<ProcessDefinition> definitions = connector.getRepositoryService()
-            .createProcessDefinitionQuery()
-            .list();
-        List<org.mule.module.activiti.action.model.ProcessDefinition> result = new ArrayList<org.mule.module.activiti.action.model.ProcessDefinition>();
-        
-        for (ProcessDefinition definition : definitions)
-        {
-            org.mule.module.activiti.action.model.ProcessDefinition def = new org.mule.module.activiti.action.model.ProcessDefinition();
-            BeanUtils.safeCopyProperties(def, definition);
-            result.add(def);
-        }
-        
-        event.getMessage().setPayload(result);
-        return event;
-    }
 
     /**
      * {@inheritDoc}

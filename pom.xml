@@ -14,7 +14,6 @@
 
     <properties>
         <mule.version>3.1.0</mule.version>
-        <activiti.version>5.4</activiti.version>
     </properties>
 
     <scm>
@@ -85,16 +84,6 @@
             <scope>test</scope>
             <version>0.09</version>
         </dependency>
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-engine</artifactId>
-            <version>${activiti.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-spring</artifactId>
-            <version>${activiti.version}</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -118,14 +107,14 @@
                 </configuration>
             </plugin>
             
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-idea-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    <downloadSources>true</downloadSources>-->
-<!--                    <jdkName>${jdk.version}</jdkName>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-idea-plugin</artifactId>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                    <jdkName>${jdk.version}</jdkName>
+                </configuration>
+            </plugin>
 
             <!--
                 Responsible for creating the release distribution for
@@ -330,22 +319,19 @@
     <profiles>
         
         <profile>
-            <id>5.1</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <maven.junit.sysproperties>activiti.version=${profile.id}</maven.junit.sysproperties>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
             <id>5.2</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-engine</artifactId>
+                    <version>5.2</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-spring</artifactId>
+                    <version>5.2</version>
+                </dependency>
+            </dependencies>
             <build>
                 <plugins>
                     <plugin>
@@ -361,6 +347,18 @@
 
         <profile>
             <id>5.3</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-engine</artifactId>
+                    <version>5.3</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-spring</artifactId>
+                    <version>5.3</version>
+                </dependency>
+            </dependencies>
             <build>
                 <plugins>
                     <plugin>
@@ -376,6 +374,18 @@
 
         <profile>
             <id>5.4</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-engine</artifactId>
+                    <version>5.4</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-spring</artifactId>
+                    <version>5.4</version>
+                </dependency>
+            </dependencies>
             <build>
                 <plugins>
                     <plugin>

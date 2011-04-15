@@ -16,6 +16,6 @@ public class ActivitiTestUtils
     public static final String MULTIPLY_WAIT_PROCESS_DEF_ID = "multiplyWait:1:115";
     public static final String MULTIPLY_WITH_CANDIDATE_PROCESS_DEF_ID = "multiplyWithCandidate:1:116";
 
-    public static final String HISTORIC_PROCESS_INSTANCE_ID = "165";
-    public static final int    HISTORIC_ACTIVITI_INSTANCE_ID = 169;
+    public static final String HISTORIC_PROCESS_INSTANCE_ID = "310";
+    public static final int    HISTORIC_ACTIVITI_INSTANCE_ID = 314;
 }

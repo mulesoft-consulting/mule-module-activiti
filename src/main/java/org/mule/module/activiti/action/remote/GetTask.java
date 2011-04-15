@@ -12,7 +12,6 @@ package org.mule.module.activiti.action.remote;
 
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleMessage;
-import org.mule.module.activiti.ActivitiEmbeddedConnector;
 
 import org.apache.commons.httpclient.methods.GetMethod;
 
@@ -37,12 +36,6 @@ public class GetTask extends AbstractRemoteActivitiAction<GetMethod>
     protected void prepareMethod(GetMethod method, MuleMessage message) throws Exception
     {
         // DO NOTHING
-    }
-
-    public MuleEvent processEmbedded(ActivitiEmbeddedConnector connector, MuleEvent event)
-    {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     public String getTaskIdExpression()

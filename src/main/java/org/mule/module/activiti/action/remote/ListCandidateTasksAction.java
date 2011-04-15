@@ -12,9 +12,6 @@ package org.mule.module.activiti.action.remote;
 
 import org.mule.api.MuleEvent;
 
-import org.activiti.engine.TaskService;
-import org.activiti.engine.task.TaskQuery;
-
 public class ListCandidateTasksAction extends AbstractListTasksAction
 {
     private String userExpression;

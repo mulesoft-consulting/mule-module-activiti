@@ -12,14 +12,9 @@ package org.mule.module.activiti.action.remote;
 
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleMessage;
-import org.mule.module.activiti.ActivitiEmbeddedConnector;
-import org.mule.module.activiti.util.BeanUtils;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import org.activiti.engine.RuntimeService;
-import org.activiti.engine.runtime.ProcessInstance;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.RequestEntity;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
@@ -36,35 +31,6 @@ public class CreateProcessAction extends AbstractRemoteActivitiAction<PostMethod
     
     public CreateProcessAction() {
         this.mapper = new ObjectMapper();
-    }
-
-    public MuleEvent processEmbedded(ActivitiEmbeddedConnector connector, MuleEvent event)
-    {
-        RuntimeService runtimeService = connector.getRuntimeService();
-        Map parameters = this.getParametersMap(event.getMessage());
-        ProcessInstance processInstance;
-        if (parameters.containsKey("processDefinitionKey"))
-        {
-            String key = (String) parameters.get("processDefinitionKey");
-            Map parametersClone = new HashMap(parameters);
-            parametersClone.remove("processDefinitionKey");
-            processInstance = runtimeService.startProcessInstanceByKey(key, parametersClone);
-        }
-        else
-        {
-            String id = (String) parameters.get("processDefinitionId");
-            Map parametersClone = new HashMap(parameters);
-            parametersClone.remove("processDefinitionId");
-            processInstance = runtimeService.startProcessInstanceById(id, parametersClone);
-        }
-        
-        org.mule.module.activiti.action.model.ProcessInstance instance = new org.mule.module.activiti.action.model.ProcessInstance();
-        
-        BeanUtils.safeCopyProperties(instance, processInstance);
-        
-        event.getMessage().setPayload(instance);
-        
-        return event;
     }
 
     /**

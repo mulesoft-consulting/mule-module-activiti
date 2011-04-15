@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="" default="evaluateActivitiModule">
+
+	<property name="activiti.module.home" value="." />
+	
+	<target name="evaluateActivitiModule">
+		
+		<exec dir="${activiti.home}/activiti-${activiti.version}/setup/" executable="ant" failifexecutionfails="false" failonerror="false">
+	      <arg value="demo.stop" />
+	    </exec>
+		<exec dir="${activiti.home}/activiti-${activiti.version}/setup/" executable="ant" failifexecutionfails="false" failonerror="false">
+	      <arg value="demo.clean" />
+	    </exec>
+		<exec dir="${activiti.home}/activiti-${activiti.version}/setup/" executable="ant" failifexecutionfails="true"  failonerror="true">
+	      <arg value="demo.start" />
+	    </exec>
+		
+		<deploy-bar file="${activiti.module.home}/src/test/resources/org/activiti/processdefinitions/multiplier.zip" />
+
+		<exec executable="sleep" failifexecutionfails="false" failonerror="false">
+	      <arg value="30" />
+	    </exec>
+
+		<exec dir="${activiti.module.home}" executable="mvn" failifexecutionfails="false" failonerror="false">
+	      <arg value="clean" />
+	      <arg value="install" />
+	      <arg value="-P${activiti.version}" />
+	    </exec>
+	</target>
+	
+	<taskdef name="deploy-bar" classname="org.activiti.engine.impl.ant.DeployBarTask">
+		<classpath>
+			<fileset dir="${activiti.home}/activiti-${activiti.version}/setup/build">
+				<include name="activiti-cfg.jar"/>
+			</fileset>
+			<fileset dir="${activiti.home}/activiti-${activiti.version}/setup/files/dependencies/libs">
+				<include name="*.jar"/>
+				<include name="activiti-engine-${activiti.version}.jar"/>
+				<include name="h2-1.2.132.jar"/>
+				<include name="ibatis-sqlmap-*.jar"/>
+			</fileset>
+		</classpath>
+	</taskdef>
+</project>

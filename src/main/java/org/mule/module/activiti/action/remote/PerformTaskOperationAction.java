@@ -12,7 +12,6 @@ package org.mule.module.activiti.action.remote;
 
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleMessage;
-import org.mule.module.activiti.ActivitiEmbeddedConnector;
 import org.mule.module.activiti.action.model.Operation;
 
 import org.apache.commons.httpclient.methods.PutMethod;
@@ -25,24 +24,6 @@ public class PerformTaskOperationAction extends AbstractRemoteActivitiAction<Put
     private String userExpression;
     private Operation operation;
 
-    public MuleEvent processEmbedded(ActivitiEmbeddedConnector connector, MuleEvent event)
-    {
-        String taskId = (String) event.getMuleContext().getExpressionManager().evaluate(this.taskIdExpression, event.getMessage());
-        String user = (String) event.getMuleContext().getExpressionManager().evaluate(this.userExpression, event.getMessage());
-        switch (this.operation)
-        {
-            case CLAIM :
-                connector.getTaskService().claim(taskId, user);
-                break;
-            case COMPLETE :
-                connector.getTaskService().complete(taskId);
-                break;
-            default :
-                break;
-        }
-        return null;
-    }
-    
     @Override
     protected void processResponse(MuleEvent event, String response)
     {

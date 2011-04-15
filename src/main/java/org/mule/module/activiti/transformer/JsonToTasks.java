@@ -9,10 +9,6 @@
  */
 package org.mule.module.activiti.transformer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import org.mule.api.MuleMessage;
 import org.mule.api.transformer.TransformerException;
 import org.mule.module.activiti.action.model.Task;
@@ -20,6 +16,10 @@ import org.mule.module.activiti.i18n.ActivitiMessages;
 import org.mule.module.json.transformers.AbstractJsonTransformer;
 import org.mule.transformer.types.CollectionDataType;
 import org.mule.util.BeanUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class JsonToTasks extends AbstractJsonTransformer
 {
