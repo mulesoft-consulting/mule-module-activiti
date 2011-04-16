@@ -4,23 +4,21 @@
 
 	<property name="activiti.module.home" value="." />
 	
-	<target name="demo.stopAndClean">
+	<target name="activiti.stopCleanAndStart">
+		<!-- SET HISTORY TO FULL IN EACH ACTIVITI INSTALATION. CHECK YOUR setup/build/activiti-cfg/activiti.cfg.xml 
+		     SET HISTORY TO FULL IN EACH ACTIVITI INSTALATION. CHECK YOUR setup/files/cfg.activiti/standalone/activiti.cfg.xml -->
 		<exec dir="${activiti.home}/activiti-${activiti.version}/setup/" executable="ant" failifexecutionfails="false" failonerror="false">
 	      <arg value="demo.stop" />
 	    </exec>
 		<exec dir="${activiti.home}/activiti-${activiti.version}/setup/" executable="ant" failifexecutionfails="false" failonerror="false">
 	      <arg value="demo.clean" />
 	    </exec>
-	</target>
-
-	<target name="evaluateActivitiModule" depends="demo.stopAndClean">
-		<!-- SET HISTORY TO FULL IN EACH ACTIVITI INSTALATION. CHECK YOUR setup/build/activiti-cfg/activiti.cfg.xml 
-		     SET HISTORY TO FULL IN EACH ACTIVITI INSTALATION. CHECK YOUR setup/files/cfg.activiti/standalone/activiti.cfg.xml -->
-
 		<exec dir="${activiti.home}/activiti-${activiti.version}/setup/" executable="ant" failifexecutionfails="true"  failonerror="true">
 	      <arg value="demo.start" />
 	    </exec>
+	</target>
 
+	<target name="activiti.deployMultiplier">
 		<taskdef name="deploy-bar" classname="org.activiti.engine.impl.ant.DeployBarTask">
 			<classpath>
 				<fileset dir="${activiti.home}/activiti-${activiti.version}/setup/build">
@@ -36,7 +34,9 @@
 		</taskdef>
 
 		<deploy-bar file="${activiti.module.home}/src/test/resources/org/activiti/processdefinitions/multiplier.zip" />
+	</target>
 
+	<target name="evaluateActivitiModule" depends="activiti.stopCleanAndStart, activiti.deployMultiplier">
 		<exec executable="sleep" failifexecutionfails="false" failonerror="false">
 	      <arg value="30" />
 	    </exec>
