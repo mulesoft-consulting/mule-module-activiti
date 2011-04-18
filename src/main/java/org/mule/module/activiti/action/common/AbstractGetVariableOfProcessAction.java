@@ -10,10 +10,13 @@
 
 package org.mule.module.activiti.action.common;
 
+import org.mule.api.MuleContext;
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleException;
 import org.mule.api.MuleRuntimeException;
+import org.mule.api.context.MuleContextAware;
 import org.mule.api.processor.MessageProcessor;
+import org.mule.api.registry.RegistrationException;
 import org.mule.module.activiti.ActivitiConnector;
 import org.mule.module.activiti.i18n.ActivitiMessages;
 
@@ -24,7 +27,7 @@ import org.apache.commons.dbutils.handlers.MapHandler;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public abstract class AbstractGetVariableOfProcessAction implements MessageProcessor
+public abstract class AbstractGetVariableOfProcessAction implements MessageProcessor, MuleContextAware
 {
     protected static final Log logger = LogFactory.getLog(AbstractGetVariableOfProcessAction.class);
 
@@ -37,6 +40,24 @@ public abstract class AbstractGetVariableOfProcessAction implements MessageProce
 
     protected abstract String getTypeColumn();
 
+    /**
+     * {@inheritDoc}
+     */
+    public void setMuleContext(MuleContext context)
+    {
+        if (this.connector == null)
+        {
+            try
+            {
+                this.connector = context.getRegistry().lookupObject(ActivitiConnector.class);
+            }
+            catch (RegistrationException e)
+            {
+                logger.warn(ActivitiMessages.noConnectorOrMultipleDefined());
+            }
+        }
+    }
+    
     protected Object[] getParameters(MuleEvent event) {
         String processInstanceId = this.getProcessInstanceId(event);
         String variable = this.getVariable(event);

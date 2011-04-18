@@ -20,7 +20,7 @@
     
     <flow name="list-assigned-tasks">
         <vm:inbound-endpoint path="in" exchange-pattern="request-response" />
-        <activiti:list-assigned-tasks connector-ref="actServer" userExpression="#[payload]"/>
+        <activiti:list-assigned-tasks userExpression="#[payload]"/>
     </flow>
 
 </mule>

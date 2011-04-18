@@ -20,7 +20,7 @@
     
     <flow name="list-candidate-group-tasks">
         <vm:inbound-endpoint path="in" exchange-pattern="request-response" />
-        <activiti:list-candidate-group-tasks connector-ref="actServer" candidateGroupExpression="#[payload]"/>
+        <activiti:list-candidate-group-tasks candidateGroupExpression="#[payload]"/>
         <activiti:json-to-tasks />
     </flow>
 

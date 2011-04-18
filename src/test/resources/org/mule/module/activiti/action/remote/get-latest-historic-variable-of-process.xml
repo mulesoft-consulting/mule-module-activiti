@@ -20,12 +20,11 @@
 
     <flow name="get-latest-historic-variable-of-process">
         <vm:inbound-endpoint path="in" exchange-pattern="request-response" />
-        <activiti:create-process connector-ref="actServer" parametersExpression="#[header:INBOUND:createProcessParameters]" />
+        <activiti:create-process parametersExpression="#[header:INBOUND:createProcessParameters]" />
         <activiti:json-to-process-instance />
         <activiti:get-latest-historic-variable-of-process 
             processInstanceIdExpression="#[groovy:payload.id]" 
-            variableExpression="#[string:number]"
-            connector-ref="actServer" />
+            variableExpression="#[string:number]" />
     </flow>
 
 </mule>

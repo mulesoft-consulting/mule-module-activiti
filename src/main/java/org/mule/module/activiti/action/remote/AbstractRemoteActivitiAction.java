@@ -10,23 +10,47 @@
 
 package org.mule.module.activiti.action.remote;
 
+import org.mule.api.MuleContext;
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleException;
 import org.mule.api.MuleMessage;
 import org.mule.api.MuleRuntimeException;
+import org.mule.api.context.MuleContextAware;
 import org.mule.api.processor.MessageProcessor;
+import org.mule.api.registry.RegistrationException;
 import org.mule.module.activiti.ActivitiRemoteConnector;
 import org.mule.module.activiti.i18n.ActivitiMessages;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.URI;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
-public abstract class AbstractRemoteActivitiAction<V extends HttpMethod> implements MessageProcessor
+public abstract class AbstractRemoteActivitiAction<V extends HttpMethod> implements MessageProcessor, MuleContextAware
 {
 
+    protected static final Log logger = LogFactory.getLog(AbstractRemoteActivitiAction.class);
     private ActivitiRemoteConnector connector;
 
+    /**
+     * {@inheritDoc}
+     */
+    public void setMuleContext(MuleContext context)
+    {
+        if (this.connector == null)
+        {
+            try
+            {
+                this.connector = context.getRegistry().lookupObject(ActivitiRemoteConnector.class);
+            }
+            catch (RegistrationException e)
+            {
+                logger.warn(ActivitiMessages.noConnectorOrMultipleDefined());
+            }
+        }
+    }
+    
     /**
      * @return
      */

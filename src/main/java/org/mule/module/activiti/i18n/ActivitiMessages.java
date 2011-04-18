@@ -34,4 +34,9 @@ public class ActivitiMessages extends MessageFactory
     {
         return factory.createMessage(BUNDLE_PATH, 3);
     }
+
+    public static Object noConnectorOrMultipleDefined()
+    {
+        return factory.createMessage(BUNDLE_PATH, 4);
+    }
 }

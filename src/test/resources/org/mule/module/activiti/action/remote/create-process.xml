@@ -20,7 +20,7 @@
 
     <flow name="create-process">
         <vm:inbound-endpoint path="in" exchange-pattern="request-response" />
-        <activiti:create-process connector-ref="actServer" parametersExpression="#[header:INBOUND:createProcessParameters]" />
+        <activiti:create-process parametersExpression="#[header:INBOUND:createProcessParameters]" />
         <activiti:json-to-process-instance />
     </flow>
 

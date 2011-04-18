@@ -20,7 +20,7 @@
     
     <flow name="list-process-definitions">
         <vm:inbound-endpoint path="in" exchange-pattern="request-response" />
-        <activiti:list-process-definitions connector-ref="actServer" />
+        <activiti:list-process-definitions />
     </flow>
 
 </mule>

@@ -23,8 +23,7 @@
         <activiti:get-historic-variable-of-process 
             processInstanceIdExpression="#[header:INBOUND:historicProcessInstanceId]" 
             variableExpression="#[string:number]"
-            activitiInstanceIdExpression="#[header:INBOUND:historicActivitiInstanceId]"
-            connector-ref="actServer" />
+            activitiInstanceIdExpression="#[header:INBOUND:historicActivitiInstanceId]" />
     </flow>
 
 </mule>

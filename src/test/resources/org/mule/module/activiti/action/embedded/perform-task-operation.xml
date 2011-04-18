@@ -20,12 +20,12 @@
 
     <flow name="perform-task-operation">
         <vm:inbound-endpoint path="in" exchange-pattern="request-response" />
-        <activiti:create-process connector-ref="actServer" parametersExpression="#[header:INBOUND:createProcessParameters]" />
-        <activiti:list-candidate-tasks connector-ref="actServer" userExpression="#[string:kermit]" start="0" size="1"/>
+        <activiti:create-process parametersExpression="#[header:INBOUND:createProcessParameters]" />
+        <activiti:list-candidate-tasks userExpression="#[string:kermit]" start="0" size="1"/>
         <collection-splitter />
-        <activiti:perform-task-operation connector-ref="actServer" taskIdExpression="#[groovy:payload.id]" 
+        <activiti:perform-task-operation taskIdExpression="#[groovy:payload.id]" 
             operation="CLAIM" userExpression="#[string:kermit]" />
-        <activiti:get-task connector-ref="actServer" taskIdExpression="#[groovy:payload.id]" />
+        <activiti:get-task taskIdExpression="#[groovy:payload.id]" />
     </flow>
 
 </mule>
