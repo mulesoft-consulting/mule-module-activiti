@@ -22,6 +22,8 @@ import org.mule.module.activiti.action.embedded.ListCandidateGroupTasksAction;
 import org.mule.module.activiti.action.embedded.ListCandidateTasksAction;
 import org.mule.module.activiti.action.embedded.ListProcessDefinitionsAction;
 import org.mule.module.activiti.action.embedded.PerformTaskOperationAction;
+import org.mule.module.activiti.action.embedded.SetVariableAction;
+import org.mule.module.activiti.action.embedded.SignalAction;
 
 /**
  * Registers a Bean Definition Parser for handling <code>&lt;activiti:connector&gt;</code> elements
@@ -45,5 +47,7 @@ public class ActivitiEmbeddedNamespaceHandler extends AbstractMuleNamespaceHandl
         registerBeanDefinitionParser("get-historic-variable-of-process", new MessageProcessorDefinitionParser(GetHistoricVariableOfProcess.class));
         registerBeanDefinitionParser("get-latest-historic-variable-of-process", new MessageProcessorDefinitionParser(GetLatestHistoricVariableOfProcess.class));
         registerBeanDefinitionParser("get-task", new MessageProcessorDefinitionParser(GetTask.class));
+        registerBeanDefinitionParser("set-variable", new MessageProcessorDefinitionParser(SetVariableAction.class));
+        registerBeanDefinitionParser("signal", new MessageProcessorDefinitionParser(SignalAction.class));
     }
 }

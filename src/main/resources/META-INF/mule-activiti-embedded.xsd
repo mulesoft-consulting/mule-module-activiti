@@ -183,4 +183,25 @@
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
+
+    <xsd:element name="set-variable" type="setVariableType" substitutionGroup="activiti-action"/>
+    <xsd:complexType name="setVariableType">
+        <xsd:complexContent>
+            <xsd:extension base="actionType">
+                <xsd:attribute name="executionIdExpression" type="xsd:string"/>
+                <xsd:attribute name="variableExpression" type="xsd:string"/>
+                <xsd:attribute name="valueExpression" type="xsd:string"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:element name="signal" type="signalType" substitutionGroup="activiti-action"/>
+    <xsd:complexType name="signalType">
+        <xsd:complexContent>
+            <xsd:extension base="actionType">
+                <xsd:attribute name="executionIdExpression" type="xsd:string"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
 </xsd:schema>

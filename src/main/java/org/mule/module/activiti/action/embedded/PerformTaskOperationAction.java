@@ -35,7 +35,7 @@ public class PerformTaskOperationAction extends AbstractEmbeddedActivitiAction
             default :
                 break;
         }
-        return null;
+        return event;
     }
     
     public Operation getOperation()
