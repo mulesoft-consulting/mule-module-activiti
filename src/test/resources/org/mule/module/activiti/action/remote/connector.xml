@@ -8,17 +8,17 @@
     xmlns:jdbc="http://www.mulesoft.org/schema/mule/jdbc"
     xmlns:spring="http://www.springframework.org/schema/beans"
     xsi:schemaLocation="
-        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
-        http://www.mulesoft.org/schema/mule/activiti-remote http://www.mulesoft.org/schema/mule/activiti-remote/3.2/mule-activiti-remote.xsd
-        http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd
-        http://www.mulesoft.org/schema/mule/jdbc http://www.mulesoft.org/schema/mule/jdbc/3.1/mule-jdbc.xsd
-        http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/3.1/mule-vm.xsd">
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+        http://www.mulesoft.org/schema/mule/activiti-remote http://www.mulesoft.org/schema/mule/activiti-remote/current/mule-activiti-remote.xsd
+        http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+        http://www.mulesoft.org/schema/mule/jdbc http://www.mulesoft.org/schema/mule/jdbc/current/mule-jdbc.xsd
+        http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd">
 
     <vm:connector name="asynchVm" />
 
     <activiti:connector name="actServer"
         activitiServerURL="http://localhost:8080/activiti-rest/service/"
-        username="kermit" password="kermit" version="5.1"
+        username="kermit" password="kermit" version="${activiti.version}"
         jdbcConnector-ref="jdbcConnector" />
     
     <spring:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

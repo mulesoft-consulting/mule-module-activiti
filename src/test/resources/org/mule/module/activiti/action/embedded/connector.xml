@@ -8,15 +8,15 @@
     xmlns:jdbc="http://www.mulesoft.org/schema/mule/jdbc"
     xmlns:spring="http://www.springframework.org/schema/beans"
     xsi:schemaLocation="
-        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
-        http://www.mulesoft.org/schema/mule/activiti-embedded http://www.mulesoft.org/schema/mule/activiti-embedded/3.2/mule-activiti-embedded.xsd
-        http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd
-        http://www.mulesoft.org/schema/mule/jdbc http://www.mulesoft.org/schema/mule/jdbc/3.1/mule-jdbc.xsd
-        http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/3.1/mule-vm.xsd">
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+        http://www.mulesoft.org/schema/mule/activiti-embedded http://www.mulesoft.org/schema/mule/activiti-embedded/current/mule-activiti-embedded.xsd
+        http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+        http://www.mulesoft.org/schema/mule/jdbc http://www.mulesoft.org/schema/mule/jdbc/current/mule-jdbc.xsd
+        http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd">
 
     <vm:connector name="asynchVm" />
 
-    <activiti:connector name="actServer" version="5.1"
+    <activiti:connector name="actServer" version="${activiti.version}"
         repositoryService-ref="repositoryService"
         runtimeService-ref="runtimeService"
         taskService-ref="taskService"
@@ -39,9 +39,10 @@
     <spring:bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
         <spring:property name="dataSource" ref="dataSource" />
         <spring:property name="transactionManager" ref="transactionManager" />
-        <spring:property name="databaseSchemaUpdate" value="false" />
+        <spring:property name="databaseSchemaUpdate" value="true" />
         <spring:property name="jobExecutorActivate" value="false" />
         <spring:property name="history" value="full" />
+        <spring:property name="deploymentResources" value="classpath:org/activiti/processdefinitions/*.bpmn20.xml" /> 
     </spring:bean>
 
     <spring:bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">

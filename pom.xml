@@ -13,7 +13,8 @@
     <description>Activiti BPMN</description>
 
     <properties>
-        <mule.version>3.1.0</mule.version>
+        <mule.version>3.2.1</mule.version>
+        <activiti.version>5.8</activiti.version>
     </properties>
 
     <scm>
@@ -165,6 +166,15 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+						<activiti.version>${activiti.version}</activiti.version>
+					</systemPropertyVariables>
+                </configuration>
+            </plugin>
+            
             <!--
                 Used for deploying zip and tar.gz distributions to
                 MuleForge. Called using: mvn muleforge:deploy-distro

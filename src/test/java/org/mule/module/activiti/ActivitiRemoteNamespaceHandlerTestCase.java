@@ -28,6 +28,6 @@ public class ActivitiRemoteNamespaceHandlerTestCase extends FunctionalTestCase
         assertEquals("http://localhost:8080/activiti-rest/service/", c.getActivitiServerURL());
         assertEquals("kermit", c.getUsername());
         assertEquals("kermit2", c.getPassword());
-        assertEquals("5.2", c.getVersion());
+        assertEquals(System.getProperty("activiti.version"), c.getVersion());
     }
 }

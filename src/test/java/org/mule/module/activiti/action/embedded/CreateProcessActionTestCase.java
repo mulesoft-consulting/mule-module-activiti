@@ -35,7 +35,7 @@ public class CreateProcessActionTestCase extends FunctionalTestCase
         MuleClient client = muleContext.getClient();
         DefaultMuleMessage message = new DefaultMuleMessage("", muleContext);
         Map parameterMap = new HashMap();
-        parameterMap.put("processDefinitionId", ActivitiTestUtils.MULTIPLY_WAIT_PROCESS_DEF_ID);
+        parameterMap.put("processDefinitionKey", ActivitiTestUtils.MULTIPLY_WAIT_PROCESS_DEF_KEY);
         message.setProperty("createProcessParameters", parameterMap , PropertyScope.OUTBOUND);
         
         MuleMessage responseMessage = client.send("vm://in", message);
@@ -44,4 +44,5 @@ public class CreateProcessActionTestCase extends FunctionalTestCase
         ProcessInstance instance = (ProcessInstance) responseMessage.getPayload();
         assertNotNull(instance);
     }
+    
 }

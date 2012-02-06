@@ -36,7 +36,7 @@ public class SetAndSignalActionsTestCase extends FunctionalTestCase
         DefaultMuleMessage message = new DefaultMuleMessage("", muleContext);
         
         Map parameterMap = new HashMap();
-        parameterMap.put("processDefinitionId", ActivitiTestUtils.MULTIPLY_DOUBLE_WAIT_PROCESS_DEF_ID);
+        parameterMap.put("processDefinitionKey", ActivitiTestUtils.MULTIPLY_DOUBLE_WAIT_PROCESS_DEF_KEY);
         
         message.setProperty("createProcessParameters", parameterMap , PropertyScope.OUTBOUND);
         

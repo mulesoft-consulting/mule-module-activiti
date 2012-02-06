@@ -36,7 +36,7 @@ public class PerformTaskOperationActionTestCase extends FunctionalTestCase
         DefaultMuleMessage message = new DefaultMuleMessage("", muleContext);
         
         Map parameterMap = new HashMap();
-        parameterMap.put("processDefinitionId", ActivitiTestUtils.MULTIPLY_WITH_CANDIDATE_PROCESS_DEF_ID);
+        parameterMap.put("processDefinitionKey", ActivitiTestUtils.MULTIPLY_WITH_CANDIDATE_PROCESS_DEF_KEY);
         message.setProperty("createProcessParameters", parameterMap , PropertyScope.OUTBOUND);
         
         MuleMessage responseMessage = client.send("vm://in", message);

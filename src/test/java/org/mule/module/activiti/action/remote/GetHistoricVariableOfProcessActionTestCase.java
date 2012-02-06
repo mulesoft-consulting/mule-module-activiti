@@ -35,7 +35,7 @@ public class GetHistoricVariableOfProcessActionTestCase extends FunctionalTestCa
         DefaultMuleMessage message = new DefaultMuleMessage("", muleContext);
         
         Map<String, Object> parameterMap = new HashMap<String, Object>();
-        parameterMap.put("processDefinitionId", ActivitiTestUtils.MULTIPLY_PROCESS_DEF_ID);
+        parameterMap.put("processDefinitionKey", ActivitiTestUtils.MULTIPLY_PROCESS_DEF_KEY);
         parameterMap.put("number", 2);
         
         message.setProperty("createProcessParameters", parameterMap , PropertyScope.OUTBOUND);
