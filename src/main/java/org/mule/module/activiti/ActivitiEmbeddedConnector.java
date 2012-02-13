@@ -20,6 +20,10 @@ import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.ProcessEngine;
+
+import org.activiti.spring.SpringProcessEngineConfiguration;
+
 
 public class ActivitiEmbeddedConnector extends AbstractConnector implements ActivitiConnector
 {
@@ -27,13 +31,13 @@ public class ActivitiEmbeddedConnector extends AbstractConnector implements Acti
 
     private String version;
 
-    private JdbcConnector jdbcConnector;
-    
     private RepositoryService repositoryService;
     private RuntimeService runtimeService;
     private TaskService taskService;
     private HistoryService historyService;
 
+    private SpringProcessEngineConfiguration processEngineConfiguration;
+    
     public ActivitiEmbeddedConnector(MuleContext context)
     {
         super(context);
@@ -60,7 +64,11 @@ public class ActivitiEmbeddedConnector extends AbstractConnector implements Acti
     @Override
     protected void doInitialise() throws InitialisationException
     {
-        // DO NOTHING
+        ProcessEngine engine = processEngineConfiguration.buildProcessEngine(); 
+        repositoryService = engine.getRepositoryService();
+        runtimeService = engine.getRuntimeService();
+        taskService = engine.getTaskService();
+        historyService = engine.getHistoryService();        
     }
 
     @Override
@@ -133,15 +141,16 @@ public class ActivitiEmbeddedConnector extends AbstractConnector implements Acti
         this.historyService = historyService;
     }
 
-    public JdbcConnector getJdbcConnector()
-    {
-        return jdbcConnector;
+    public SpringProcessEngineConfiguration getProcessEngineConfiguration() 
+    { 
+        return this.processEngineConfiguration; 
     }
 
-    public void setJdbcConnector(JdbcConnector jdbcConnector)
-    {
-        this.jdbcConnector = jdbcConnector;
+    public void setprocessEngineConfiguration(SpringProcessEngineConfiguration processEngineConfiguration ) 
+    { 
+        this.processEngineConfiguration = processEngineConfiguration; 
     }
+    
 }
 
 

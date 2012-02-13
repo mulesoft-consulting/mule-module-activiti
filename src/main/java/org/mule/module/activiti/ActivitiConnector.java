@@ -10,14 +10,8 @@
 
 package org.mule.module.activiti;
 
-import org.mule.transport.jdbc.JdbcConnector;
-
 public interface ActivitiConnector
 {
-
-    JdbcConnector getJdbcConnector();
-
-    void setJdbcConnector(JdbcConnector jdbcConnector);
 }
 
 

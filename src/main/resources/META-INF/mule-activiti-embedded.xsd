@@ -38,17 +38,19 @@
     <xsd:complexType name="activitiConnectorType">
         <xsd:complexContent>
             <xsd:extension base="mule:connectorType">
+<!--
                 <xsd:attribute name="repositoryService-ref" type="xsd:string" />
                 <xsd:attribute name="runtimeService-ref" type="xsd:string" />
                 <xsd:attribute name="taskService-ref" type="xsd:string" />
                 <xsd:attribute name="historyService-ref" type="xsd:string" />
-                <xsd:attribute name="jdbcConnector-ref" type="xsd:string">
+-->
+                <xsd:attribute name="processEngineConfiguration-ref" type="xsd:string">
                     <xsd:annotation>
                         <xsd:documentation>
-                            A reference to the JDBC connector used to connect to Activiti's Database.
+                            A reference to the Process Engine Configuration bean. See http://www.activiti.org/userguide/index.html#configurationRoot for details.
                         </xsd:documentation>
-                    </xsd:annotation>
-                </xsd:attribute>
+                    </xsd:annotation>                    
+                </xsd:attribute>    
                 <xsd:attribute name="version" type="xsd:string">
                     <xsd:annotation>
                         <xsd:documentation>
@@ -100,7 +102,7 @@
             <xsd:extension base="actionType">
                 <xsd:attribute name="processInstanceIdExpression" type="xsd:string"/>
                 <xsd:attribute name="variableExpression" type="xsd:string"/>
-                <xsd:attribute name="query" type="xsd:string"/>
+               <!-- <xsd:attribute name="query" type="xsd:string"/> -->
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>

@@ -44,5 +44,4 @@ public class CreateProcessActionTestCase extends FunctionalTestCase
         ProcessInstance instance = (ProcessInstance) responseMessage.getPayload();
         assertNotNull(instance);
     }
-    
 }

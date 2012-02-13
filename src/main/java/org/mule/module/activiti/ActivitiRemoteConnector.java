@@ -14,7 +14,6 @@ import org.mule.api.MuleContext;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.config.i18n.CoreMessages;
 import org.mule.transport.http.HttpConnector;
-import org.mule.transport.jdbc.JdbcConnector;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -36,7 +35,6 @@ public class ActivitiRemoteConnector extends HttpConnector implements ActivitiCo
     private String username;
     private String password;
     private URL url;
-    private JdbcConnector jdbcConnector;
 
     public ActivitiRemoteConnector(MuleContext context)
     {
@@ -134,15 +132,6 @@ public class ActivitiRemoteConnector extends HttpConnector implements ActivitiCo
         this.version = version;
     }
 
-    public JdbcConnector getJdbcConnector()
-    {
-        return jdbcConnector;
-    }
-
-    public void setJdbcConnector(JdbcConnector jdbcConnector)
-    {
-        this.jdbcConnector = jdbcConnector;
-    }
 }
 
 

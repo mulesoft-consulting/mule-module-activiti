@@ -5,26 +5,18 @@
     xmlns:activiti="http://www.mulesoft.org/schema/mule/activiti-embedded"
     xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
     xmlns:script="http://www.mulesoft.org/schema/mule/scripting"
-    xmlns:jdbc="http://www.mulesoft.org/schema/mule/jdbc"
     xmlns:spring="http://www.springframework.org/schema/beans"
     xsi:schemaLocation="
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
         http://www.mulesoft.org/schema/mule/activiti-embedded http://www.mulesoft.org/schema/mule/activiti-embedded/current/mule-activiti-embedded.xsd
         http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
-        http://www.mulesoft.org/schema/mule/jdbc http://www.mulesoft.org/schema/mule/jdbc/current/mule-jdbc.xsd
         http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd">
 
     <vm:connector name="asynchVm" />
 
     <activiti:connector name="actServer" version="${activiti.version}"
-        repositoryService-ref="repositoryService"
-        runtimeService-ref="runtimeService"
-        taskService-ref="taskService"
-        historyService-ref="historyService"
-        jdbcConnector-ref="jdbcConnector" />
+        processEngineConfiguration-ref="processEngineConfiguration"/>
         
-    <jdbc:connector name="jdbcConnector" pollingFrequency="1000" dataSource-ref="dataSource" queryTimeout="3000" />
-
     <spring:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <spring:property name="driverClassName" value="org.h2.Driver" />
         <spring:property name="url" value="jdbc:h2:tcp://localhost/activiti" />
@@ -38,19 +30,11 @@
 
     <spring:bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
         <spring:property name="dataSource" ref="dataSource" />
-        <spring:property name="transactionManager" ref="transactionManager" />
+        <spring:property name="transactionManager" ref="transactionManager" /> 
         <spring:property name="databaseSchemaUpdate" value="true" />
         <spring:property name="jobExecutorActivate" value="false" />
         <spring:property name="history" value="full" />
-        <spring:property name="deploymentResources" value="classpath:org/activiti/processdefinitions/*.bpmn20.xml" /> 
+        <spring:property name="deploymentResources" value="classpath:org/activiti/processdefinitions/*.bpmn20.xml" />
     </spring:bean>
 
-    <spring:bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
-        <spring:property name="processEngineConfiguration" ref="processEngineConfiguration" />
-    </spring:bean>
-
-    <spring:bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
-    <spring:bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
-    <spring:bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
-    <spring:bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
 </mule>

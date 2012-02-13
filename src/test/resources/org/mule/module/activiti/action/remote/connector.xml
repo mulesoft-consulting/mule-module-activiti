@@ -5,21 +5,18 @@
     xmlns:activiti="http://www.mulesoft.org/schema/mule/activiti-remote"
     xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
     xmlns:script="http://www.mulesoft.org/schema/mule/scripting"
-    xmlns:jdbc="http://www.mulesoft.org/schema/mule/jdbc"
     xmlns:spring="http://www.springframework.org/schema/beans"
     xsi:schemaLocation="
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
         http://www.mulesoft.org/schema/mule/activiti-remote http://www.mulesoft.org/schema/mule/activiti-remote/current/mule-activiti-remote.xsd
         http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
-        http://www.mulesoft.org/schema/mule/jdbc http://www.mulesoft.org/schema/mule/jdbc/current/mule-jdbc.xsd
         http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd">
 
     <vm:connector name="asynchVm" />
 
     <activiti:connector name="actServer"
         activitiServerURL="http://localhost:8080/activiti-rest/service/"
-        username="kermit" password="kermit" version="${activiti.version}"
-        jdbcConnector-ref="jdbcConnector" />
+        username="kermit" password="kermit" version="${activiti.version}"/>
     
     <spring:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <spring:property name="driverClassName" value="org.h2.Driver" />
@@ -28,5 +25,4 @@
         <spring:property name="password" value="" />
     </spring:bean>
 
-    <jdbc:connector name="jdbcConnector" pollingFrequency="1000" dataSource-ref="dataSource" queryTimeout="3000" />
 </mule>

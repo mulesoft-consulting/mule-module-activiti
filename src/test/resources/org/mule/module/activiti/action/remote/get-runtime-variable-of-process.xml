@@ -22,9 +22,12 @@
         <vm:inbound-endpoint path="in" exchange-pattern="request-response" />
         <activiti:create-process parametersExpression="#[header:INBOUND:createProcessParameters]" />
         <activiti:json-to-process-instance />
+<!--
         <activiti:get-runtime-variable-of-process 
             processInstanceIdExpression="#[groovy:payload.id]" 
-            variableExpression="#[string:number]" />
+            variableExpression="#[string:number]" /> -->
+            <activiti:get-runtime-variable-of-process />
+            
     </flow>
 
 </mule>
