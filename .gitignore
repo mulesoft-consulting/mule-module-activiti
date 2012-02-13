@@ -4,3 +4,9 @@ target
 .project
 .settings
 alfresco.log
+
+lib/activiti-engine-5.8.jar
+
+lib/activiti-spring-5.8.jar
+
+lib/mybatis-3.0.4.jar
