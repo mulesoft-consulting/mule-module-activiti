@@ -30,7 +30,6 @@ import java.util.Iterator;
 //GET_LATEST_HISTORY_VARIABLE_QUERY = "SELECT * FROM act_hi_detail WHERE PROC_INST_ID_ = ? AND NAME_ = ? ORDER BY TIME_ DESC";
 public class GetLatestHistoricVariableOfProcess extends AbstractGetVariableOfProcessAction
 {
-    @Override
     public void setMuleContext(MuleContext context)
     {
         if (getConnector() == null)

@@ -33,7 +33,6 @@ public class GetHistoricVariableOfProcess extends AbstractGetVariableOfProcessAc
 {
     private String activitiInstanceIdExpression;
 
-    @Override
     public void setMuleContext(MuleContext context)
     {
         if (getConnector() == null)

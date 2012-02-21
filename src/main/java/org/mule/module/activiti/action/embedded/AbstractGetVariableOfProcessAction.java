@@ -42,7 +42,6 @@ public abstract class AbstractGetVariableOfProcessAction implements MessageProce
 
     protected abstract HistoricDetailQuery getQuery(MuleEvent event);
     
-    @Override
     public MuleEvent process(MuleEvent event) throws MuleException
      {
          try {
