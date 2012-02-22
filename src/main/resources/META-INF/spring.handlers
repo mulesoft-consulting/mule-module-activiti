@@ -1,2 +1,0 @@
-http\://www.mulesoft.org/schema/mule/activiti-remote=org.mule.module.activiti.config.ActivitiRemoteNamespaceHandler
-http\://www.mulesoft.org/schema/mule/activiti-embedded=org.mule.module.activiti.config.ActivitiEmbeddedNamespaceHandler
