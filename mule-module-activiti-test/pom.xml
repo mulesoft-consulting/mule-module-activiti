@@ -19,22 +19,15 @@
     <name>Activiti Test</name>
     <description>Activiti Test</description>
 
-    <properties>
-        <mule.version>3.2.1</mule.version>
-        <activiti.version>5.8</activiti.version>
-    </properties>
-
-    <scm>
-        <connection>scm:git:git@github.com:mulesoft/mule-module-activiti.git</connection>
-        <developerConnection>scm:git:git@github.com:mulesoft/mule-module-activiti.git</developerConnection>
-        <url>https://github.com/mulesoft/mule-module-activiti</url>
-    </scm>
-
     <dependencies>
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-activiti-core</artifactId>
-            <version>${mule.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mule.tests</groupId>
+            <artifactId>mule-tests-functional</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

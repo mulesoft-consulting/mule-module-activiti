@@ -19,88 +19,41 @@
     <name>Activiti Core</name>
     <description>Activiti Core</description>
 
-    <properties>
-        <mule.version>3.2.1</mule.version>
-        <activiti.version>5.8</activiti.version>
-    </properties>
-
-    <scm>
-        <connection>scm:git:git@github.com:mulesoft/mule-module-activiti.git</connection>
-        <developerConnection>scm:git:git@github.com:mulesoft/mule-module-activiti.git</developerConnection>
-        <url>https://github.com/mulesoft/mule-module-activiti</url>
-    </scm>
-
     <dependencies>
         <dependency>
             <groupId>org.mule</groupId>
             <artifactId>mule-core</artifactId>
-            <version>${mule.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mule.transports</groupId>
             <artifactId>mule-transport-http</artifactId>
-            <version>${mule.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mule.transports</groupId>
             <artifactId>mule-transport-vm</artifactId>
-            <version>${mule.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mule.transports</groupId>
             <artifactId>mule-transport-jdbc</artifactId>
-            <version>${mule.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-json</artifactId>
-            <version>${mule.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-scripting</artifactId>
-            <version>${mule.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mule.tests</groupId>
             <artifactId>mule-tests-functional</artifactId>
-            <version>${mule.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-client</artifactId>
-            <version>${mule.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.2.132</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>3.0.3.RELEASE</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>mockobjects</groupId>
-            <artifactId>mockobjects-core</artifactId>
-            <scope>test</scope>
-            <version>0.09</version>
-        </dependency>
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-engine</artifactId>
-            <version>${activiti.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-spring</artifactId>
-            <version>${activiti.version}</version>
         </dependency>
     </dependencies>
 
