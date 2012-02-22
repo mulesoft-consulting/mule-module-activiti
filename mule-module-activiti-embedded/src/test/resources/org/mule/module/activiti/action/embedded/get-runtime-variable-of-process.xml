@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule 
+    xmlns="http://www.mulesoft.org/schema/mule/core" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:activiti="http://www.mulesoft.org/schema/mule/activiti-embedded"
+    xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+    xmlns:script="http://www.mulesoft.org/schema/mule/scripting"
+    xmlns:spring="http://www.springframework.org/schema/beans"
+    xsi:schemaLocation="
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+        http://www.mulesoft.org/schema/mule/activiti-embedded http://www.mulesoft.org/schema/mule/activiti-embedded/current/mule-activiti-embedded.xsd
+        http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+        http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    ">
+
+    <spring:beans>
+        <spring:import resource="classpath:org/mule/module/activiti/action/embedded/connector.xml" />
+    </spring:beans>
+    
+    <flow name="get-runtime-variable-of-process">
+        <vm:inbound-endpoint path="in" exchange-pattern="request-response" />
+        <activiti:create-process parametersExpression="#[header:INBOUND:createProcessParameters]" />
+        <activiti:get-runtime-variable-of-process 
+            processInstanceIdExpression="#[groovy:payload.id]" 
+            variableExpression="#[string:number]" />
+    </flow>
+
+</mule>

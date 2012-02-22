@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:activiti="http://www.mulesoft.org/schema/mule/activiti-remote"
+    xsi:schemaLocation="
+    	http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+    	http://www.mulesoft.org/schema/mule/activiti-remote http://www.mulesoft.org/schema/mule/activiti-remote/current/mule-activiti-remote.xsd">
+
+    <activiti:connector name="actServer" activitiServerURL="http://localhost:8080/activiti-rest/service/" 
+            username="kermit" password="kermit2" version="${activiti.version}" />
+       
+</mule>

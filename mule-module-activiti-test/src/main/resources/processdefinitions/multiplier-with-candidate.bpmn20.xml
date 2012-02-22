@@ -1,0 +1,21 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+    xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+    typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
+    targetNamespace="http://www.activiti.org/test">
+    
+    <process id="multiplyWithCandidate" name="multiplyWithCandidate">
+        <startEvent id="startevent3" name="Start"></startEvent>
+        <sequenceFlow id="flow3" name="" sourceRef="startevent3" targetRef="task"></sequenceFlow>
+        <userTask id="task" name="My Task" activiti:candidateUsers="kermit"/>
+        <sequenceFlow id="flow7" name="" sourceRef="task" targetRef="servicetask3"></sequenceFlow>
+
+        <serviceTask id="servicetask3"
+            activiti:expression="#{number * 2}"
+            activiti:resultVariable="number" />
+            
+        <sequenceFlow id="flow4" name="" sourceRef="servicetask3" targetRef="endevent1"></sequenceFlow>
+        <endEvent id="endevent1" name="End"></endEvent>
+    </process>
+</definitions>
