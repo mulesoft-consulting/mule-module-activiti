@@ -24,5 +24,5 @@ public class ActivitiTestUtils
     public static final String MULTIPLY_DOUBLE_WAIT_PROCESS_DEF_KEY = "multiplyDoubleWait";
 
     public static final String HISTORIC_PROCESS_INSTANCE_ID = "310";
-    public static final int    HISTORIC_ACTIVITI_INSTANCE_ID = 314;
+    public static final int    HISTORIC_ACTIVITI_INSTANCE_ID = 312;
 }

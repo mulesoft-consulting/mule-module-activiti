@@ -44,6 +44,6 @@ public class GetHistoricVariableOfProcessActionTestCase extends FunctionalTestCa
         
         MuleMessage responseMessage = client.send("vm://in", message);
         assertNotNull(responseMessage);
-        assertEquals("4", responseMessage.getPayloadAsString());
+        assertEquals("3", responseMessage.getPayloadAsString());
     }
 }

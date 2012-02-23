@@ -34,7 +34,7 @@
         <spring:property name="databaseSchemaUpdate" value="true" />
         <spring:property name="jobExecutorActivate" value="false" />
         <spring:property name="history" value="full" />
-        <spring:property name="deploymentResources" value="classpath:org/activiti/processdefinitions/*.bpmn20.xml" />
+        <spring:property name="deploymentResources" value="classpath:processdefinitions/*.bpmn20.xml" />
     </spring:bean>
 
 </mule>

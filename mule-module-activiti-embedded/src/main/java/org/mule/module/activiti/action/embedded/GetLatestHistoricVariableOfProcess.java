@@ -38,9 +38,13 @@ public class GetLatestHistoricVariableOfProcess extends AbstractGetVariableOfPro
     @Override
     protected HistoricDetailQuery getQuery(MuleEvent event) {
         ActivitiEmbeddedConnector embeddedConnector = (ActivitiEmbeddedConnector)super.getConnector();
-        return embeddedConnector.getHistoryService().createHistoricDetailQuery().variableUpdates()
-                            .processInstanceId(super.getProcessInstanceId(event))
-                            .orderByTime().desc();
+        return embeddedConnector
+        			.getHistoryService()
+        			.createHistoricDetailQuery()
+        			.variableUpdates()
+                    .processInstanceId(super.getProcessInstanceId(event))
+                    .orderByTime()
+                    .desc();
     }
 
 }
