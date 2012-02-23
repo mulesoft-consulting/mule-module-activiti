@@ -94,4 +94,10 @@ public class Task implements Serializable
     {
         this.formResourceKey = formResourceKey;
     }
+
+    public String toString() {
+        return "Activiti Task: ID=" + getId() + " ; Name=" + getName() + " ; Description=" + getDescription() + 
+               " ; Priority=" + getPriority() + " ; Assignee=" + getAssignee() + " ; Execution ID=" + getExecutionId() + 
+               " ; Form Resource Key=" + getFormResourceKey();
+    }
 }
