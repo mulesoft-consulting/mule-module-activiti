@@ -45,6 +45,9 @@ public class ActivitiRemoteNamespaceHandler extends AbstractMuleNamespaceHandler
         registerBeanDefinitionParser("perform-task-operation", new MessageProcessorDefinitionParser(PerformTaskOperationAction.class));
         registerBeanDefinitionParser("get-runtime-variable-of-process", new MessageProcessorDefinitionParser(GetRuntimeVariableOfProcess.class));
         registerBeanDefinitionParser("get-task", new MessageProcessorDefinitionParser(GetTask.class));
+//get-latest-historic-variable-of-process
+//set-variable
+//signal
 
         //TRANSFORMERS
         registerBeanDefinitionParser("json-to-process-definitions", new MessageProcessorDefinitionParser(JsonToProcessDefinitions.class));

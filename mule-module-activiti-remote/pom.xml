@@ -96,8 +96,8 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>upload-muleforge-artifacts</id>
-                        <phase>deploy</phase>
+                        <id>assemble-package</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>assembly</goal>
                         </goals>
