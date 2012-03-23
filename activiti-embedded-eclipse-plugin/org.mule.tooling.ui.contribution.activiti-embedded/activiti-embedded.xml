@@ -1,0 +1,1034 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" prefix="activiti-embedded" url="http://www.mulesoft.org/schema/mule/activiti-embedded">
+    <global-cloud-connector image="icons/large/activiti-connector-48x32.png" localId="connector" icon="icons/small/activiti-connector-24x16.png" description="Global Activiti configuration information." caption="Activiti (Embedded)">
+        <attribute-category description="Activiti configuration properties." caption="General">
+            <group caption="Generic" id="activitiGenericProperties">
+                <name required="true" description="Give a name to this configuration so it can be later referenced by config-ref." caption="Name" name="name"/>
+            </group>
+            <group caption="General" id="general">
+                <enum allowsCustom="false" required="true" supportsExpressions="false" description="Version of the Activiti BPM Engine" caption="Version" name="version">
+                    <option value="5.8"/>
+                    <option value="5.7"/>
+                    <option value="5.6"/>
+                    <option value="5.5"/>
+                    <option value="5.4"/>
+                    <option value="5.3"/>
+                    <option value="5.2"/>
+                    <option value="5.1"/>
+                </enum>
+                <globalRef requiredType="http://www.springframework.org/schema/beans/bean" description="Select Process Engine Configuration beanm to be used with Activiti" caption="Process Engine Configuration Reference" name="processEngineConfiguration-ref"/>
+            </group>
+        </attribute-category>
+    </global-cloud-connector>
+    
+    <cloud-connector image="icons/large/activiti-connector-48x32.png" 
+         localId="abstractActivitiConnectorGeneric" icon="icons/small/activiti-connector-24x16.png" 
+         description="Activiti is a light-weight workflow and Business Process Management (BPM) Platform" caption="Activiti" 
+         aliasId="org.mule.tooling.ui.modules.core.pattern.activiti">
+      <attribute-category description="General." caption="General">
+        <group caption="General" id="activitiConnectorGeneric">
+          <globalRef requiredType="http://www.mulesoft.org/schema/mule/activiti-embedded/connector" description="Specify which Activiti connector to use for this invocation." caption="Connector Reference" name="connector-ref"></globalRef>
+          <modeSwitch description="Action." caption="Action" name="Activiti actions to execute">
+            <mode modeLabel="Create Process" modeId="http://www.mulesoft.org/schema/mule/activiti-embedded/create-process"></mode>
+            <mode modeLabel="Get Historic Variable of Process" modeId="http://www.mulesoft.org/schema/mule/activiti-embedded/get-historic-variable-of-process"></mode>
+            <mode modeLabel="Get Latest Historic Variable of Process" modeId="http://www.mulesoft.org/schema/mule/activiti-embedded/get-latest-historic-variable-of-process"></mode>
+            <mode modeLabel="Get Runtime Variable of Process" modeId="http://www.mulesoft.org/schema/mule/activiti-embedded/get-runtime-variable-of-process"></mode>
+            <mode modeLabel="Get Task" modeId="http://www.mulesoft.org/schema/mule/activiti-embedded/get-task"></mode>
+            <mode modeLabel="List Assigned Tasks" modeId="http://www.mulesoft.org/schema/mule/activiti-embedded/list-assigned-tasks"></mode>
+            <mode modeLabel="List Candidate Group Tasks" modeId="http://www.mulesoft.org/schema/mule/activiti-embedded/list-candidate-group-tasks"></mode>
+            <mode modeLabel="List Candidate Tasks" modeId="http://www.mulesoft.org/schema/mule/activiti-embedded/list-candidate-tasks"></mode>
+            <mode modeLabel="List Process Definitions" modeId="http://www.mulesoft.org/schema/mule/activiti-embedded/list-process-definitions"></mode>
+            <mode modeLabel="Perform Task Operation" modeId="http://www.mulesoft.org/schema/mule/activiti-embedded/perform-task-operation"></mode>
+            <mode modeLabel="Set Variable" modeId="http://www.mulesoft.org/schema/mule/activiti-embedded/set-variable"></mode>
+            <mode modeLabel="Signal" modeId="http://www.mulesoft.org/schema/mule/activiti-embedded/signal"></mode>
+          </modeSwitch>
+        </group>
+      </attribute-category>
+    </cloud-connector>
+    
+    <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti-embedded/abstractActivitiConnectorGeneric" abstract="true" 
+        image="icons/large/activiti-connector-48x32.png" localId="create-process" icon="icons/small/activiti-connector-24x16.png" caption="Create Process">
+      <attribute-category description="General." caption="General">
+        <group caption="General" id="general">
+          <string required="true" description="Process Parameters." caption="Parameters" name="parametersExpression" supportsExpressions="true"></string>
+        </group>
+      </attribute-category>
+    </cloud-connector>
+    
+    <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti-embedded/abstractActivitiConnectorGeneric" abstract="true" 
+        image="icons/large/activiti-connector-48x32.png" localId="get-historic-variable-of-process" icon="icons/small/activiti-connector-24x16.png" caption="Get Historic Variable of Process">
+      <attribute-category description="General." caption="General">
+        <group caption="General" id="general">
+          <string required="true" description="Activiti Instance ID." caption="Activiti Instance ID" name="activitiInstanceIdExpression" supportsExpressions="true"></string>
+          <string required="true" description="Process Instance ID." caption="Process Instance ID" name="processInstanceIdExpression" supportsExpressions="true"></string>
+          <string required="true" description="Variable." caption="Variable" name="variableExpression" supportsExpressions="true"></string>
+        </group>
+      </attribute-category>
+    </cloud-connector>
+
+    <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti-embedded/abstractActivitiConnectorGeneric" abstract="true" 
+        image="icons/large/activiti-connector-48x32.png" localId="get-latest-historic-variable-of-process" icon="icons/small/activiti-connector-24x16.png" caption="Get Latest Historic Variable of Process">
+      <attribute-category description="General." caption="General">
+        <group caption="General" id="general">
+          <string required="true" description="Process Instance ID." caption="Process Instance ID" name="processInstanceIdExpression" supportsExpressions="true"></string>
+          <string required="true" description="Variable." caption="Variable" name="variableExpression" supportsExpressions="true"></string>
+        </group>
+      </attribute-category>
+    </cloud-connector>
+
+    <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti-embedded/abstractActivitiConnectorGeneric" abstract="true" 
+        image="icons/large/activiti-connector-48x32.png" icon="icons/small/activiti-connector-24x16.png" 
+        localId="get-runtime-variable-of-process" 
+        caption="Get Runtime Variable of Process">
+      <attribute-category description="General." caption="General">
+        <group caption="General" id="general">
+          <string required="true" description="Process Instance ID." caption="Process Instance ID" name="processInstanceIdExpression" supportsExpressions="true"></string>
+          <string required="true" description="Variable." caption="Variable" name="variableExpression" supportsExpressions="true"></string>
+        </group>
+      </attribute-category>
+    </cloud-connector>
+
+    <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti-embedded/abstractActivitiConnectorGeneric" abstract="true" 
+        image="icons/large/activiti-connector-48x32.png" icon="icons/small/activiti-connector-24x16.png" 
+        localId="get-task" 
+        caption="Get Task">
+      <attribute-category description="General." caption="General">
+        <group caption="General" id="general">
+          <string required="true" description="Task ID." caption="Task ID" name="taskIdExpression" supportsExpressions="true"></string>
+        </group>
+      </attribute-category>
+    </cloud-connector>
+    
+    <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti-embedded/abstractActivitiConnectorGeneric" abstract="true" 
+        image="icons/large/activiti-connector-48x32.png" icon="icons/small/activiti-connector-24x16.png" 
+        localId="list-assigned-tasks" 
+        caption="List Assigned Tasks">
+      <attribute-category description="General." caption="General">
+        <group caption="General" id="general">
+          <string required="true" description="User" caption="User" name="userExpression" supportsExpressions="true"></string>
+          <integer required="true" description="Start" caption="Start" name="start" supportsExpressions="true"></integer>
+          <integer required="true" description="Size" caption="Size" name="size" supportsExpressions="true"></integer>
+        </group>
+      </attribute-category>
+    </cloud-connector>
+    
+    <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti-embedded/abstractActivitiConnectorGeneric" abstract="true" 
+        image="icons/large/activiti-connector-48x32.png" icon="icons/small/activiti-connector-24x16.png" 
+        localId="list-candidate-tasks" 
+        caption="List Candidate Tasks">
+      <attribute-category description="General." caption="General">
+        <group caption="General" id="general">
+          <string required="true" description="User" caption="User" name="userExpression" supportsExpressions="true"></string>
+          <integer required="true" description="Start" caption="Start" name="start" supportsExpressions="true"></integer>
+          <integer required="true" description="Size" caption="Size" name="size" supportsExpressions="true"></integer>
+        </group>
+      </attribute-category>
+    </cloud-connector>
+    
+    <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti-embedded/abstractActivitiConnectorGeneric" abstract="true" 
+        image="icons/large/activiti-connector-48x32.png" icon="icons/small/activiti-connector-24x16.png" 
+        localId="list-candidate-group-tasks" 
+        caption="List Candidate Group Tasks">
+      <attribute-category description="General." caption="General">
+        <group caption="General" id="general">
+          <string required="true" description="Group" caption="Group" name="candidateGroupExpression" supportsExpressions="true"></string>
+          <integer required="true" description="Start" caption="Start" name="start" supportsExpressions="true"></integer>
+          <integer required="true" description="Size" caption="Size" name="size" supportsExpressions="true"></integer>
+        </group>
+      </attribute-category>
+    </cloud-connector>
+
+    <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti-embedded/abstractActivitiConnectorGeneric" abstract="true" 
+        image="icons/large/activiti-connector-48x32.png" icon="icons/small/activiti-connector-24x16.png" 
+        localId="list-process-definitions" 
+        caption="List Process Definitions">
+      <attribute-category description="General." caption="General">
+        <group caption="General" id="general">
+          <integer required="true" description="Start" caption="Start" name="start" supportsExpressions="true"></integer>
+          <integer required="true" description="Size" caption="Size" name="size" supportsExpressions="true"></integer>
+        </group>
+      </attribute-category>
+    </cloud-connector>
+    
+    <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti-embedded/abstractActivitiConnectorGeneric" abstract="true" 
+        image="icons/large/activiti-connector-48x32.png" icon="icons/small/activiti-connector-24x16.png" 
+        localId="perform-task-operation" 
+        caption="Perform Task Operation">
+      <attribute-category description="General." caption="General">
+        <group caption="General" id="general">
+          <string required="true" description="Task ID" caption="Task ID" name="taskIdExpression" supportsExpressions="true"></string>
+          <string required="true" description="User" caption="User" name="userExpression" supportsExpressions="true"></string>
+          <enum allowsCustom="false" required="true" description="Operation" caption="Operation" name="operation">
+            <option value="COMPLETE"></option>
+            <option value="CLAIM"></option>
+          </enum>
+        </group>
+      </attribute-category>
+    </cloud-connector>
+    
+    <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti-embedded/abstractActivitiConnectorGeneric" abstract="true" 
+        image="icons/large/activiti-connector-48x32.png" icon="icons/small/activiti-connector-24x16.png" 
+        localId="set-variable" 
+        caption="Set Variable">
+      <attribute-category description="General." caption="General">
+        <group caption="General" id="general">
+          <string required="true" description="Execution ID" caption="Execution ID" name="executionIdExpression" supportsExpressions="true"></string>
+          <string required="true" description="Variable" caption="Variable" name="variableExpression" supportsExpressions="true"></string>
+          <string required="true" description="Value" caption="Value" name="valueExpression" supportsExpressions="true"></string>
+        </group>
+      </attribute-category>
+    </cloud-connector>
+    
+    <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti-embedded/abstractActivitiConnectorGeneric" abstract="true" 
+        image="icons/large/activiti-connector-48x32.png" icon="icons/small/activiti-connector-24x16.png" 
+        localId="signal" 
+        caption="Signal">
+      <attribute-category description="General." caption="General">
+        <group caption="General" id="general">
+          <string required="true" description="Execution ID" caption="Execution ID" name="executionIdExpression" supportsExpressions="true"></string>
+        </group>
+      </attribute-category>
+    </cloud-connector>
+    
+    <!--
+
+  
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="list-collections" icon="icons/small/activiti-connector-24x16.png" caption="List Collections">
+    <attribute-category description="General." caption="General"></attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="exists-collection" icon="icons/small/activiti-connector-24x16.png" caption="Exists Collection">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The name of the collection." caption="Collection" name="collection"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="drop-collection" icon="icons/small/activiti-connector-24x16.png" caption="Drop Collection">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The name of the collection to drop." caption="Collection" name="collection"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="create-collection" icon="icons/small/activiti-connector-24x16.png" caption="Create Collection">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The name of the collection to create." caption="Collection" name="collection"></string>
+        <integer step="1" min="0" required="false" description="The maximum number of documents the new collection is able to contain." caption="Max Objects" name="maxObjects"></integer>
+        <integer step="1" min="0" required="false" description="The maximum size of the new collection." caption="Size" name="size"></integer>
+        <boolean defaultValue="false" required="false" supportsExpressions="true" description="If the collection will be capped." caption="Capped" name="capped"></boolean>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="insert-object" icon="icons/small/activiti-connector-24x16.png" caption="Insert Object">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The name of the collection where to insert the given object." caption="Collection" name="collection"></string>
+        <string required="true" description="A  instance." caption="Db Object Reference" name="dbObject-ref"></string>
+        <enum allowsCustom="true" defaultValue="DATABASE_DEFAULT" required="false" supportsExpressions="true" description="The optional write concern of insertion." caption="Write Concern" name="writeConcern">
+          <option value="DATABASE_DEFAULT"></option>
+          <option value="FSYNC_SAFE"></option>
+          <option value="NONE"></option>
+          <option value="NORMAL"></option>
+          <option value="REPLICAS_SAFE"></option>
+          <option value="SAFE"></option>
+        </enum>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="insert-object-from-map" icon="icons/small/activiti-connector-24x16.png" caption="Insert Object From Map">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The name of the collection where to insert the given object." caption="Collection" name="collection"></string>
+        <enum allowsCustom="true" defaultValue="DATABASE_DEFAULT" required="false" supportsExpressions="true" description="The optional write concern of insertion." caption="Write Concern" name="writeConcern">
+          <option value="DATABASE_DEFAULT"></option>
+          <option value="FSYNC_SAFE"></option>
+          <option value="NONE"></option>
+          <option value="NORMAL"></option>
+          <option value="REPLICAS_SAFE"></option>
+          <option value="SAFE"></option>
+        </enum>
+      </group>
+      <group caption="Element Attributes" id="element Attributes">
+        <childElement allowMultiple="false" inplace="true" description="Alternative way of specifying the element as a literal Map inside a Mule Flow." caption="Element Attributes" name="http://www.mulesoft.org/schema/mule/activiti/insert-object-from-map-element-attributes"></childElement>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested xmlname="element-attributes" image="icons/large/activiti-connector-48x32.png" localId="insert-object-from-map-element-attributes" icon="icons/small/activiti-connector-24x16.png" description="Element attributes." caption="Element Attributes">
+    <childElement allowMultiple="true" description="Element attributes." caption="Element Attributes" name="http://www.mulesoft.org/schema/mule/activiti/insert-object-from-map-element-attribute"></childElement>
+  </nested>
+  <nested xmlname="element-attribute" image="icons/large/activiti-connector-48x32.png" localId="insert-object-from-map-element-attribute" icon="icons/small/activiti-connector-24x16.png" description="Element attributes." caption="Element Attributes">
+    <string description="Key." caption="Key" name="key"></string>
+    <text isToElement="true" description="Value." caption="Value" name="value"></text>
+  </nested>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="update-objects" icon="icons/small/activiti-connector-24x16.png" caption="Update Objects">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The name of the collection to update." caption="Collection" name="collection"></string>
+        <string required="true" description="The  query object used to detect the element to update." caption="Query Reference" name="query-ref"></string>
+        <string required="true" description="The  mandatory object that will replace that one which matches the query." caption="Element Reference" name="element-ref"></string>
+        <enum allowsCustom="true" defaultValue="DATABASE_DEFAULT" required="false" supportsExpressions="true" description="The write concern used to update." caption="Write Concern" name="writeConcern">
+          <option value="DATABASE_DEFAULT"></option>
+          <option value="FSYNC_SAFE"></option>
+          <option value="NONE"></option>
+          <option value="NORMAL"></option>
+          <option value="REPLICAS_SAFE"></option>
+          <option value="SAFE"></option>
+        </enum>
+        <boolean defaultValue="true" required="false" supportsExpressions="true" description="If all or just the first object matching the query will be updated." caption="Multi" name="multi"></boolean>
+        <boolean defaultValue="false" required="false" supportsExpressions="true" description="If the database should create the element if it does not exist." caption="Upsert" name="upsert"></boolean>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="update-objects-using-map" icon="icons/small/activiti-connector-24x16.png" caption="Update Objects Using Map">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The name of the collection to update." caption="Collection" name="collection"></string>
+        <enum allowsCustom="true" defaultValue="DATABASE_DEFAULT" required="false" supportsExpressions="true" description="The write concern used to update." caption="Write Concern" name="writeConcern">
+          <option value="DATABASE_DEFAULT"></option>
+          <option value="FSYNC_SAFE"></option>
+          <option value="NONE"></option>
+          <option value="NORMAL"></option>
+          <option value="REPLICAS_SAFE"></option>
+          <option value="SAFE"></option>
+        </enum>
+        <boolean defaultValue="true" required="false" supportsExpressions="true" description="If all or just the first object matching the query will be updated." caption="Multi" name="multi"></boolean>
+        <boolean defaultValue="false" required="false" supportsExpressions="true" description="If the database should create the element if it does not exist." caption="Upsert" name="upsert"></boolean>
+      </group>
+      <group caption="Query Attributes" id="query Attributes">
+        <childElement allowMultiple="false" inplace="true" description="The query object used to detect the element to update." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/update-objects-using-map-query-attributes"></childElement>
+      </group>
+      <group caption="Element Attributes" id="element Attributes">
+        <childElement allowMultiple="false" inplace="true" description="The mandatory object that will replace that one which matches the query." caption="Element Attributes" name="http://www.mulesoft.org/schema/mule/activiti/update-objects-using-map-element-attributes"></childElement>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested xmlname="query-attributes" image="icons/large/activiti-connector-48x32.png" localId="update-objects-using-map-query-attributes" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <childElement allowMultiple="true" description="Query attributes." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/update-objects-using-map-query-attribute"></childElement>
+  </nested>
+  <nested xmlname="query-attribute" image="icons/large/activiti-connector-48x32.png" localId="update-objects-using-map-query-attribute" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <string description="Key." caption="Key" name="key"></string>
+    <text isToElement="true" description="Value." caption="Value" name="value"></text>
+  </nested>
+  <nested xmlname="element-attributes" image="icons/large/activiti-connector-48x32.png" localId="update-objects-using-map-element-attributes" icon="icons/small/activiti-connector-24x16.png" description="Element attributes." caption="Element Attributes">
+    <childElement allowMultiple="true" description="Element attributes." caption="Element Attributes" name="http://www.mulesoft.org/schema/mule/activiti/update-objects-using-map-element-attribute"></childElement>
+  </nested>
+  <nested xmlname="element-attribute" image="icons/large/activiti-connector-48x32.png" localId="update-objects-using-map-element-attribute" icon="icons/small/activiti-connector-24x16.png" description="Element attributes." caption="Element Attributes">
+    <string description="Key." caption="Key" name="key"></string>
+    <text isToElement="true" description="Value." caption="Value" name="value"></text>
+  </nested>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="save-object" icon="icons/small/activiti-connector-24x16.png" caption="Save Object">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The collection where to insert the object." caption="Collection" name="collection"></string>
+        <string required="true" description="The mandatory  object to insert." caption="Element Reference" name="element-ref"></string>
+        <enum allowsCustom="true" defaultValue="DATABASE_DEFAULT" required="false" supportsExpressions="true" description="The write concern used to persist the object." caption="Write Concern" name="writeConcern">
+          <option value="DATABASE_DEFAULT"></option>
+          <option value="FSYNC_SAFE"></option>
+          <option value="NONE"></option>
+          <option value="NORMAL"></option>
+          <option value="REPLICAS_SAFE"></option>
+          <option value="SAFE"></option>
+        </enum>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="save-object-from-map" icon="icons/small/activiti-connector-24x16.png" caption="Save Object From Map">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The collection where to insert the object." caption="Collection" name="collection"></string>
+        <enum allowsCustom="true" defaultValue="DATABASE_DEFAULT" required="false" supportsExpressions="true" description="The write concern used to persist the object." caption="Write Concern" name="writeConcern">
+          <option value="DATABASE_DEFAULT"></option>
+          <option value="FSYNC_SAFE"></option>
+          <option value="NONE"></option>
+          <option value="NORMAL"></option>
+          <option value="REPLICAS_SAFE"></option>
+          <option value="SAFE"></option>
+        </enum>
+      </group>
+      <group caption="Element Attributes" id="element Attributes">
+        <childElement allowMultiple="false" inplace="true" description="The mandatory object to insert." caption="Element Attributes" name="http://www.mulesoft.org/schema/mule/activiti/save-object-from-map-element-attributes"></childElement>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested xmlname="element-attributes" image="icons/large/activiti-connector-48x32.png" localId="save-object-from-map-element-attributes" icon="icons/small/activiti-connector-24x16.png" description="Element attributes." caption="Element Attributes">
+    <childElement allowMultiple="true" description="Element attributes." caption="Element Attributes" name="http://www.mulesoft.org/schema/mule/activiti/save-object-from-map-element-attribute"></childElement>
+  </nested>
+  <nested xmlname="element-attribute" image="icons/large/activiti-connector-48x32.png" localId="save-object-from-map-element-attribute" icon="icons/small/activiti-connector-24x16.png" description="Element attributes." caption="Element Attributes">
+    <string description="Key." caption="Key" name="key"></string>
+    <text isToElement="true" description="Value." caption="Value" name="value"></text>
+  </nested>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="remove-objects" icon="icons/small/activiti-connector-24x16.png" caption="Remove Objects">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The collection whose elements will be removed." caption="Collection" name="collection"></string>
+        <string required="true" description="The optional  query object. Objects that match it will be removed." caption="Query Reference" name="query-ref"></string>
+        <enum allowsCustom="true" defaultValue="DATABASE_DEFAULT" required="false" supportsExpressions="true" description="The write concern used to remove the object." caption="Write Concern" name="writeConcern">
+          <option value="DATABASE_DEFAULT"></option>
+          <option value="FSYNC_SAFE"></option>
+          <option value="NONE"></option>
+          <option value="NORMAL"></option>
+          <option value="REPLICAS_SAFE"></option>
+          <option value="SAFE"></option>
+        </enum>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="remove-using-query-map" icon="icons/small/activiti-connector-24x16.png" caption="Remove Using Query Map">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The collection whose elements will be removed." caption="Collection" name="collection"></string>
+        <enum allowsCustom="true" defaultValue="DATABASE_DEFAULT" required="false" supportsExpressions="true" description="The write concern used to remove the object." caption="Write Concern" name="writeConcern">
+          <option value="DATABASE_DEFAULT"></option>
+          <option value="FSYNC_SAFE"></option>
+          <option value="NONE"></option>
+          <option value="NORMAL"></option>
+          <option value="REPLICAS_SAFE"></option>
+          <option value="SAFE"></option>
+        </enum>
+      </group>
+      <group caption="Query Attributes" id="query Attributes">
+        <childElement allowMultiple="false" inplace="true" description="The query object. Objects that match it will be removed." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/remove-using-query-map-query-attributes"></childElement>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested xmlname="query-attributes" image="icons/large/activiti-connector-48x32.png" localId="remove-using-query-map-query-attributes" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <childElement allowMultiple="true" description="Query attributes." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/remove-using-query-map-query-attribute"></childElement>
+  </nested>
+  <nested xmlname="query-attribute" image="icons/large/activiti-connector-48x32.png" localId="remove-using-query-map-query-attribute" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <string description="Key." caption="Key" name="key"></string>
+    <text isToElement="true" description="Value." caption="Value" name="value"></text>
+  </nested>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="map-reduce-objects" icon="icons/small/activiti-connector-24x16.png" caption="Map Reduce Objects">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The name of the collection to map and reduce." caption="Collection" name="collection"></string>
+        <string required="true" description="A JavaScript encoded mapping function." caption="Map Function" name="mapFunction"></string>
+        <string required="false" description="The name of the output collection to write the results, replacing previous collection if existed, mandatory when results may be larger than 16MB. If outputCollection is unspecified, the computation is performed in-memory and not persisted." caption="Output Collection" name="outputCollection"></string>
+        <string required="true" description="A JavaScript encoded reducing function." caption="Reduce Function" name="reduceFunction"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="count-objects" icon="icons/small/activiti-connector-24x16.png" caption="Count Objects">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The target collection." caption="Collection" name="collection"></string>
+        <string required="false" description="The optional  query for counting objects. Only objects matching it will be counted. If unspecified, all objects are counted." caption="Query Reference" name="query-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="count-objects-using-query-map" icon="icons/small/activiti-connector-24x16.png" caption="Count Objects Using Query Map">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The target collection." caption="Collection" name="collection"></string>
+      </group>
+      <group caption="Query Attributes" id="query Attributes">
+        <childElement allowMultiple="false" inplace="true" description="The optional query for counting objects. Only objects matching it will be counted. If unspecified, all objects are counted." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/count-objects-using-query-map-query-attributes"></childElement>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested xmlname="query-attributes" image="icons/large/activiti-connector-48x32.png" localId="count-objects-using-query-map-query-attributes" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <childElement allowMultiple="true" description="Query attributes." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/count-objects-using-query-map-query-attribute"></childElement>
+  </nested>
+  <nested xmlname="query-attribute" image="icons/large/activiti-connector-48x32.png" localId="count-objects-using-query-map-query-attribute" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <string description="Key." caption="Key" name="key"></string>
+    <text isToElement="true" description="Value." caption="Value" name="value"></text>
+  </nested>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="find-objects" icon="icons/small/activiti-connector-24x16.png" caption="Find Objects">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The target collection." caption="Collection" name="collection"></string>
+        <string required="false" description="The optional  query object. If unspecified, all documents are returned." caption="Query Reference" name="query-ref"></string>
+      </group>
+      <group caption="Fields" id="fields">
+        <childElement allowMultiple="false" inplace="true" description="Alternative way of passing fields as a literal List." caption="Fields" name="http://www.mulesoft.org/schema/mule/activiti/find-objects-fields"></childElement>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested xmlname="fields" image="icons/large/activiti-connector-48x32.png" localId="find-objects-fields" icon="icons/small/activiti-connector-24x16.png" description="Fields." caption="Fields">
+    <childElement allowMultiple="true" description="Fields." caption="Fields" name="http://www.mulesoft.org/schema/mule/activiti/find-objects-field"></childElement>
+  </nested>
+  <nested xmlname="field" image="icons/large/activiti-connector-48x32.png" localId="find-objects-field" icon="icons/small/activiti-connector-24x16.png" description="Fields." caption="Fields">
+    <text isToElement="true" description="Alternative way of passing fields as a literal List." caption="Fields" name="find-objects-field"></text>
+  </nested>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="find-objects-using-query-map" icon="icons/small/activiti-connector-24x16.png" caption="Find Objects Using Query Map">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The target collection." caption="Collection" name="collection"></string>
+      </group>
+      <group caption="Query Attributes" id="query Attributes">
+        <childElement allowMultiple="false" inplace="true" description="The optional query object. If unspecified, all documents are returned." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/find-objects-using-query-map-query-attributes"></childElement>
+      </group>
+      <group caption="Fields" id="fields">
+        <childElement allowMultiple="false" inplace="true" description="Alternative way of passing fields as a literal List." caption="Fields" name="http://www.mulesoft.org/schema/mule/activiti/find-objects-using-query-map-fields"></childElement>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested xmlname="query-attributes" image="icons/large/activiti-connector-48x32.png" localId="find-objects-using-query-map-query-attributes" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <childElement allowMultiple="true" description="Query attributes." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/find-objects-using-query-map-query-attribute"></childElement>
+  </nested>
+  <nested xmlname="query-attribute" image="icons/large/activiti-connector-48x32.png" localId="find-objects-using-query-map-query-attribute" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <string description="Key." caption="Key" name="key"></string>
+    <text isToElement="true" description="Value." caption="Value" name="value"></text>
+  </nested>
+  <nested xmlname="fields" image="icons/large/activiti-connector-48x32.png" localId="find-objects-using-query-map-fields" icon="icons/small/activiti-connector-24x16.png" description="Fields." caption="Fields">
+    <childElement allowMultiple="true" description="Fields." caption="Fields" name="http://www.mulesoft.org/schema/mule/activiti/find-objects-using-query-map-field"></childElement>
+  </nested>
+  <nested xmlname="field" image="icons/large/activiti-connector-48x32.png" localId="find-objects-using-query-map-field" icon="icons/small/activiti-connector-24x16.png" description="Fields." caption="Fields">
+    <text isToElement="true" description="Alternative way of passing fields as a literal List." caption="Fields" name="find-objects-using-query-map-field"></text>
+  </nested>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="find-one-object" icon="icons/small/activiti-connector-24x16.png" caption="Find One Object">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The target collection." caption="Collection" name="collection"></string>
+        <string required="true" description="The mandatory  query object that the returned object matches." caption="Query Reference" name="query-ref"></string>
+      </group>
+      <group caption="Fields" id="fields">
+        <childElement allowMultiple="false" inplace="true" description="Alternative way of passing fields as a literal List." caption="Fields" name="http://www.mulesoft.org/schema/mule/activiti/find-one-object-fields"></childElement>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested xmlname="fields" image="icons/large/activiti-connector-48x32.png" localId="find-one-object-fields" icon="icons/small/activiti-connector-24x16.png" description="Fields." caption="Fields">
+    <childElement allowMultiple="true" description="Fields." caption="Fields" name="http://www.mulesoft.org/schema/mule/activiti/find-one-object-field"></childElement>
+  </nested>
+  <nested xmlname="field" image="icons/large/activiti-connector-48x32.png" localId="find-one-object-field" icon="icons/small/activiti-connector-24x16.png" description="Fields." caption="Fields">
+    <text isToElement="true" description="Alternative way of passing fields as a literal List." caption="Fields" name="find-one-object-field"></text>
+  </nested>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="find-one-object-using-query-map" icon="icons/small/activiti-connector-24x16.png" caption="Find One Object Using Query Map">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The target collection." caption="Collection" name="collection"></string>
+      </group>
+      <group caption="Query Attributes" id="query Attributes">
+        <childElement allowMultiple="false" inplace="true" description="The mandatory query object that the returned object matches." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/find-one-object-using-query-map-query-attributes"></childElement>
+      </group>
+      <group caption="Fields" id="fields">
+        <childElement allowMultiple="false" inplace="true" description="Alternative way of passing fields as a literal List." caption="Fields" name="http://www.mulesoft.org/schema/mule/activiti/find-one-object-using-query-map-fields"></childElement>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested xmlname="query-attributes" image="icons/large/activiti-connector-48x32.png" localId="find-one-object-using-query-map-query-attributes" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <childElement allowMultiple="true" description="Query attributes." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/find-one-object-using-query-map-query-attribute"></childElement>
+  </nested>
+  <nested xmlname="query-attribute" image="icons/large/activiti-connector-48x32.png" localId="find-one-object-using-query-map-query-attribute" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <string description="Key." caption="Key" name="key"></string>
+    <text isToElement="true" description="Value." caption="Value" name="value"></text>
+  </nested>
+  <nested xmlname="fields" image="icons/large/activiti-connector-48x32.png" localId="find-one-object-using-query-map-fields" icon="icons/small/activiti-connector-24x16.png" description="Fields." caption="Fields">
+    <childElement allowMultiple="true" description="Fields." caption="Fields" name="http://www.mulesoft.org/schema/mule/activiti/find-one-object-using-query-map-field"></childElement>
+  </nested>
+  <nested xmlname="field" image="icons/large/activiti-connector-48x32.png" localId="find-one-object-using-query-map-field" icon="icons/small/activiti-connector-24x16.png" description="Fields." caption="Fields">
+    <text isToElement="true" description="Alternative way of passing fields as a literal List." caption="Fields" name="find-one-object-using-query-map-field"></text>
+  </nested>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="create-index" icon="icons/small/activiti-connector-24x16.png" caption="Create Index">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The name of the collection where the index will be created." caption="Collection" name="collection"></string>
+        <string required="true" description="The name of the field which will be indexed." caption="Field" name="field"></string>
+        <enum allowsCustom="true" defaultValue="ASC" required="false" supportsExpressions="true" description="The indexing order." caption="Order" name="order">
+          <option value="ASC"></option>
+          <option value="DESC"></option>
+        </enum>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="drop-index" icon="icons/small/activiti-connector-24x16.png" caption="Drop Index">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The name of the collection where the index is." caption="Collection" name="collection"></string>
+        <string required="true" description="The name of the index to drop." caption="Index" name="index"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="list-indices" icon="icons/small/activiti-connector-24x16.png" caption="List Indices">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The name of the collection." caption="Collection" name="collection"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="create-file-from-payload" icon="icons/small/activiti-connector-24x16.png" caption="Create File From Payload">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="false" description="The optional content type of the new file." caption="Content Type" name="contentType"></string>
+        <string required="true" description="The mandatory name of new file." caption="Filename" name="filename"></string>
+        <string required="false" description="The optional  metadata of the new content type." caption="Metadata Reference" name="metadata-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="find-files" icon="icons/small/activiti-connector-24x16.png" caption="Find Files">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="false" description="A  query the optional query." caption="Query Reference" name="query-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="find-files-using-query-map" icon="icons/small/activiti-connector-24x16.png" caption="Find Files Using Query Map">
+    <attribute-category description="General." caption="General">
+      <group caption="Query Attributes" id="query Attributes">
+        <childElement allowMultiple="false" inplace="true" description="The optional query attributes." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/find-files-using-query-map-query-attributes"></childElement>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested xmlname="query-attributes" image="icons/large/activiti-connector-48x32.png" localId="find-files-using-query-map-query-attributes" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <childElement allowMultiple="true" description="Query attributes." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/find-files-using-query-map-query-attribute"></childElement>
+  </nested>
+  <nested xmlname="query-attribute" image="icons/large/activiti-connector-48x32.png" localId="find-files-using-query-map-query-attribute" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <string description="Key." caption="Key" name="key"></string>
+    <text isToElement="true" description="Value." caption="Value" name="value"></text>
+  </nested>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="find-one-file" icon="icons/small/activiti-connector-24x16.png" caption="Find One File">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The  mandatory query." caption="Query Reference" name="query-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="find-one-file-using-query-map" icon="icons/small/activiti-connector-24x16.png" caption="Find One File Using Query Map">
+    <attribute-category description="General." caption="General">
+      <group caption="Query Attributes" id="query Attributes">
+        <childElement allowMultiple="false" inplace="true" description="The mandatory query." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/find-one-file-using-query-map-query-attributes"></childElement>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested xmlname="query-attributes" image="icons/large/activiti-connector-48x32.png" localId="find-one-file-using-query-map-query-attributes" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <childElement allowMultiple="true" description="Query attributes." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/find-one-file-using-query-map-query-attribute"></childElement>
+  </nested>
+  <nested xmlname="query-attribute" image="icons/large/activiti-connector-48x32.png" localId="find-one-file-using-query-map-query-attribute" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <string description="Key." caption="Key" name="key"></string>
+    <text isToElement="true" description="Value." caption="Value" name="value"></text>
+  </nested>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="get-file-content" icon="icons/small/activiti-connector-24x16.png" caption="Get File Content">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="true" description="The  mandatory query." caption="Query Reference" name="query-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="get-file-content-using-query-map" icon="icons/small/activiti-connector-24x16.png" caption="Get File Content Using Query Map">
+    <attribute-category description="General." caption="General">
+      <group caption="Query Attributes" id="query Attributes">
+        <childElement allowMultiple="false" inplace="true" description="The mandatory query attributes." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/get-file-content-using-query-map-query-attributes"></childElement>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested xmlname="query-attributes" image="icons/large/activiti-connector-48x32.png" localId="get-file-content-using-query-map-query-attributes" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <childElement allowMultiple="true" description="Query attributes." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/get-file-content-using-query-map-query-attribute"></childElement>
+  </nested>
+  <nested xmlname="query-attribute" image="icons/large/activiti-connector-48x32.png" localId="get-file-content-using-query-map-query-attribute" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <string description="Key." caption="Key" name="key"></string>
+    <text isToElement="true" description="Value." caption="Value" name="value"></text>
+  </nested>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="list-files" icon="icons/small/activiti-connector-24x16.png" caption="List Files">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="false" description="The  optional query." caption="Query Reference" name="query-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="list-files-using-query-map" icon="icons/small/activiti-connector-24x16.png" caption="List Files Using Query Map">
+    <attribute-category description="General." caption="General">
+      <group caption="Query Attributes" id="query Attributes">
+        <childElement allowMultiple="false" inplace="true" description="The optional query." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/list-files-using-query-map-query-attributes"></childElement>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested xmlname="query-attributes" image="icons/large/activiti-connector-48x32.png" localId="list-files-using-query-map-query-attributes" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <childElement allowMultiple="true" description="Query attributes." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/list-files-using-query-map-query-attribute"></childElement>
+  </nested>
+  <nested xmlname="query-attribute" image="icons/large/activiti-connector-48x32.png" localId="list-files-using-query-map-query-attribute" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <string description="Key." caption="Key" name="key"></string>
+    <text isToElement="true" description="Value." caption="Value" name="value"></text>
+  </nested>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="remove-files" icon="icons/small/activiti-connector-24x16.png" caption="Remove Files">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="false" description="The  optional query." caption="Query Reference" name="query-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/activiti/abstractactivitiConnectorGeneric" abstract="true" image="icons/large/activiti-connector-48x32.png" localId="remove-files-using-query-map" icon="icons/small/activiti-connector-24x16.png" caption="Remove Files Using Query Map">
+    <attribute-category description="General." caption="General">
+      <group caption="Query Attributes" id="query Attributes">
+        <childElement allowMultiple="false" inplace="true" description="The optional query." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/remove-files-using-query-map-query-attributes"></childElement>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection." caption="Connection">
+      <group caption="Connection" id="connection">
+        <label caption="Use these fields to override the credentials defined in the activiti DB connector."></label>
+        <label caption=""></label>
+        <string required="false" description="The username to use in case authentication is required." caption="Username" name="username"></string>
+        <password required="false" description="The password to use in case authentication is required, null if no authentication is desired." caption="Password" name="password"></password>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested xmlname="query-attributes" image="icons/large/activiti-connector-48x32.png" localId="remove-files-using-query-map-query-attributes" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <childElement allowMultiple="true" description="Query attributes." caption="Query Attributes" name="http://www.mulesoft.org/schema/mule/activiti/remove-files-using-query-map-query-attribute"></childElement>
+  </nested>
+  <nested xmlname="query-attribute" image="icons/large/activiti-connector-48x32.png" localId="remove-files-using-query-map-query-attribute" icon="icons/small/activiti-connector-24x16.png" description="Query attributes." caption="Query Attributes">
+    <string description="Key." caption="Key" name="key"></string>
+    <text isToElement="true" description="Value." caption="Value" name="value"></text>
+  </nested>
+  <transformer image="icons/large/activiti-transformer-48x32.png" localId="activiti-transformer" icon="icons/small/activiti-transformer-24x16.png" description="activitiDB is an open source, high-performance, schema-free, document-oriented database that manages collections of
+BSON documents." caption="activiti DB" aliasId="org.mule.tooling.ui.modules.core.pattern.activiti">
+    <attribute-category description="General." caption="General">
+      <group caption="Generic" id="activitiConnectorGeneric">
+        <modeSwitch description="Operation." caption="Operation" name="activiti operations to execute">
+          <mode modeLabel="Bson list to json" modeId="http://www.mulesoft.org/schema/mule/activiti/bson-list-to-json"></mode>
+          <mode modeLabel="Db object to map" modeId="http://www.mulesoft.org/schema/mule/activiti/db-object-to-map"></mode>
+          <mode modeLabel="Dbobject to json" modeId="http://www.mulesoft.org/schema/mule/activiti/dbobject-to-json"></mode>
+          <mode modeLabel="Json to dbobject" modeId="http://www.mulesoft.org/schema/mule/activiti/json-to-dbobject"></mode>
+          <mode modeLabel="activiti collection to json" modeId="http://www.mulesoft.org/schema/mule/activiti/activiti-collection-to-json"></mode>
+        </modeSwitch>
+      </group>
+    </attribute-category>
+  </transformer>
+  <transformer extends="http://www.mulesoft.org/schema/mule/activiti/activiti-transformer" abstract="true" localId="abstractTransformer" description="Base transformer." caption="Base Transformer">
+    <attribute-category description="Advanced settings for transformer." caption="Advanced">
+      <group caption="Transformer Settings" id="abstractTransformerSettings">
+        <string description="The class of the message generated by the transformer. This is used if transformers are auto-selected and to validate that the transformer returns the correct type. Note that if you need to specify an array type you need postfix the class name with '[]'. For example, if you want return a an Orange[], you set the return class to 'org.mule.tck.testmodels.fruit.Orange[]'." caption="Return Class" name="returnClass"></string>
+        <boolean description="Many transformers only accept certain classes. Such transformers are never called with inappropriate input (whatever the value of this attribute). If a transformer forms part of a chain and cannot accept the current message class, this flag controls whether the remaining part of the chain is evaluated. If true, the next transformer is called. If false the chain ends, keeping the result generated up to that point." caption="Ignore Bad Input" xsdType="substitutableBoolean" name="ignoreBadInput"></boolean>
+        <encoding description="String encoding used for transformer output." caption="Encoding" xsdType="string" name="encoding"></encoding>
+      </group>
+      <group caption="Mime Type Attributes" id="mimeTypeAttributes">
+        <enum allowsCustom="true" description="The mime type of the transformer's output." caption="Mime Type" xsdType="string" name="mimeType">
+          <option value="text/plain"></option>
+          <option value="text/css"></option>
+          <option value="text/javascript"></option>
+          <option value="text/xml"></option>
+          <option value="text/xhtml"></option>
+          <option value="text/html"></option>
+          <option value="image/jpeg"></option>
+          <option value="image/gif"></option>
+          <option value="image/png"></option>
+          <option value="application/json"></option>
+          <option value="application/pdf"></option>
+          <option value="application/x-compressed"></option>
+          <option value="application/zip"></option>
+          <option value="multipart/x-zip"></option>
+          <option value="binary/octet-stream"></option>
+        </enum>
+      </group>
+    </attribute-category>
+  </transformer>
+  <global-transformer extends="http://www.mulesoft.org/schema/mule/activiti/abstractTransformer" image="icons/large/activiti-transformer-48x32.png" localId="global-transformer" icon="icons/small/activiti-transformer-24x16.png" description="Global transformer." caption="activiti DB">
+    <attribute-category description="General." caption="General">
+      <group caption="Generic" id="activitiConnectorGeneric">
+        <modeSwitch description="Operation." caption="Operation" name="activiti operations to execute">
+          <mode modeLabel="Bson list to json" modeId="http://www.mulesoft.org/schema/mule/activiti/bson-list-to-json"></mode>
+          <mode modeLabel="Db object to map" modeId="http://www.mulesoft.org/schema/mule/activiti/db-object-to-map"></mode>
+          <mode modeLabel="Dbobject to json" modeId="http://www.mulesoft.org/schema/mule/activiti/dbobject-to-json"></mode>
+          <mode modeLabel="Json to dbobject" modeId="http://www.mulesoft.org/schema/mule/activiti/json-to-dbobject"></mode>
+          <mode modeLabel="activiti collection to json" modeId="http://www.mulesoft.org/schema/mule/activiti/activiti-collection-to-json"></mode>
+        </modeSwitch>
+      </group>
+    </attribute-category>
+  </global-transformer>
+  <transformer extends="http://www.mulesoft.org/schema/mule/activiti/abstractTransformer" abstract="true" image="icons/large/activiti-transformer-48x32.png" localId="json-to-dbobject" icon="icons/small/activiti-transformer-24x16.png" description="Convert JSON to DBObject.
+." caption="Json To Dbobject"></transformer>
+  <global-transformer extends="http://www.mulesoft.org/schema/mule/activiti/json-to-dbobject" abstract="true" image="icons/large/activiti-transformer-48x32.png" localId="json-to-dbobject" icon="icons/small/activiti-transformer-24x16.png" description="Convert JSON to DBObject.
+." caption="Json To Dbobject">
+    <attribute-category description="General." caption="General">
+      <group caption="Generic">
+        <name required="true" description="Identifies the transformer so that other elements can reference it. Required if the transformer is defined at the global level." caption="Name" name="name"></name>
+      </group>
+    </attribute-category>
+  </global-transformer>
+  <transformer extends="http://www.mulesoft.org/schema/mule/activiti/abstractTransformer" abstract="true" image="icons/large/activiti-transformer-48x32.png" localId="dbobject-to-json" icon="icons/small/activiti-transformer-24x16.png" description="Convert DBObject to Json.
+." caption="Dbobject To Json"></transformer>
+  <global-transformer extends="http://www.mulesoft.org/schema/mule/activiti/dbobject-to-json" abstract="true" image="icons/large/activiti-transformer-48x32.png" localId="dbobject-to-json" icon="icons/small/activiti-transformer-24x16.png" description="Convert DBObject to Json.
+." caption="Dbobject To Json">
+    <attribute-category description="General." caption="General">
+      <group caption="Generic">
+        <name required="true" description="Identifies the transformer so that other elements can reference it. Required if the transformer is defined at the global level." caption="Name" name="name"></name>
+      </group>
+    </attribute-category>
+  </global-transformer>
+  <transformer extends="http://www.mulesoft.org/schema/mule/activiti/abstractTransformer" abstract="true" image="icons/large/activiti-transformer-48x32.png" localId="bson-list-to-json" icon="icons/small/activiti-transformer-24x16.png" description="Convert a BasicBSONList into Json.
+." caption="Bson List To Json"></transformer>
+  <global-transformer extends="http://www.mulesoft.org/schema/mule/activiti/bson-list-to-json" abstract="true" image="icons/large/activiti-transformer-48x32.png" localId="bson-list-to-json" icon="icons/small/activiti-transformer-24x16.png" description="Convert a BasicBSONList into Json.
+." caption="Bson List To Json">
+    <attribute-category description="General." caption="General">
+      <group caption="Generic">
+        <name required="true" description="Identifies the transformer so that other elements can reference it. Required if the transformer is defined at the global level." caption="Name" name="name"></name>
+      </group>
+    </attribute-category>
+  </global-transformer>
+  <transformer extends="http://www.mulesoft.org/schema/mule/activiti/abstractTransformer" abstract="true" image="icons/large/activiti-transformer-48x32.png" localId="activiti-collection-to-json" icon="icons/small/activiti-transformer-24x16.png" description="Convert a BasicBSONList into Json.
+." caption="activiti Collection To Json"></transformer>
+  <global-transformer extends="http://www.mulesoft.org/schema/mule/activiti/activiti-collection-to-json" abstract="true" image="icons/large/activiti-transformer-48x32.png" localId="activiti-collection-to-json" icon="icons/small/activiti-transformer-24x16.png" description="Convert a BasicBSONList into Json.
+." caption="activiti Collection To Json">
+    <attribute-category description="General." caption="General">
+      <group caption="Generic">
+        <name required="true" description="Identifies the transformer so that other elements can reference it. Required if the transformer is defined at the global level." caption="Name" name="name"></name>
+      </group>
+    </attribute-category>
+  </global-transformer>
+  <transformer extends="http://www.mulesoft.org/schema/mule/activiti/abstractTransformer" abstract="true" image="icons/large/activiti-transformer-48x32.png" localId="db-object-to-map" icon="icons/small/activiti-transformer-24x16.png" description="Convert a DBObject into Map.
+." caption="Db Object To Map"></transformer>
+  <global-transformer extends="http://www.mulesoft.org/schema/mule/activiti/db-object-to-map" abstract="true" image="icons/large/activiti-transformer-48x32.png" localId="db-object-to-map" icon="icons/small/activiti-transformer-24x16.png" description="Convert a DBObject into Map.
+." caption="Db Object To Map">
+    <attribute-category description="General." caption="General">
+      <group caption="Generic">
+        <name required="true" description="Identifies the transformer so that other elements can reference it. Required if the transformer is defined at the global level." caption="Name" name="name"></name>
+      </group>
+    </attribute-category>
+  </global-transformer>
+  -->
+</namespace>

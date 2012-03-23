@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+    <feature id="org.mule.tooling.activiti-embedded">
+      <category name="org.mule.tooling.ui.contribution.activiti-embedded"/>
+    </feature>
+   <category-def name="org.mule.tooling.ui.contribution.activiti-embedded" label="Mule Activiti (Embedded) Module">
+      <description>
+			Mule Activiti (Embedded) Module
+      </description>
+   </category-def>
+</site>

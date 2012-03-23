@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.mule.tooling.core.contribution">
+      <externalContribution
+            contributionJar="mule-module-activiti-3.2.2.jar"
+            contributionLibPathInMule="/plugins"
+            contributionLibs="mule-module-activiti-3.2.2.zip"
+            contributionNamespace="http://www.mulesoft.org/schema/mule/activiti-embedded"
+            contributionNamespaceFile="http://www.mulesoft.org/schema/mule/activiti-embedded/current/mule-activiti-embedded.xsd"
+            contributionNamespacePrefix="activiti-embedded"
+            contributionType="cloud-connector"
+            icon="icons/small/activiti-connector-24x16.png"
+            name="Activiti (Embedded)"
+            path="activiti-embedded.xml"
+            version="3.2.2">
+      </externalContribution>
+   </extension>
+
+</plugin>
