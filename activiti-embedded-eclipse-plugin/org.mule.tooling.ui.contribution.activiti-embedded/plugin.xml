@@ -4,9 +4,9 @@
    <extension
          point="org.mule.tooling.core.contribution">
       <externalContribution
-            contributionJar="mule-module-activiti-3.2.2.jar"
+            contributionJar="mule-module-activiti-embedded-3.2.2.jar"
             contributionLibPathInMule="/plugins"
-            contributionLibs="mule-module-activiti-3.2.2.zip"
+            contributionLibs="mule-module-activiti-embedded-3.2.2.zip"
             contributionNamespace="http://www.mulesoft.org/schema/mule/activiti-embedded"
             contributionNamespaceFile="http://www.mulesoft.org/schema/mule/activiti-embedded/current/mule-activiti-embedded.xsd"
             contributionNamespacePrefix="activiti-embedded"

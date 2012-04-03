@@ -12,7 +12,6 @@
     </formats>
     
     <fileSets>
-        <!--
         <fileSet>
             <directory>target</directory>
             <outputDirectory>lib</outputDirectory>
@@ -20,19 +19,6 @@
                 <include>*.jar</include>
             </includes>
         </fileSet>
-        <fileSet>
-            <directory>examples</directory>
-            <outputDirectory>lib</outputDirectory>
-        </fileSet>
-        <fileSet>
-            <directory></directory>
-            <outputDirectory></outputDirectory>
-            <includes>
-                <include>README.txt</include>
-                <include>LICENSE.txt</include>
-            </includes>
-        </fileSet>
--->
         <fileSet>
             <directory>../lib</directory>
             <outputDirectory>lib</outputDirectory>
@@ -42,7 +28,7 @@
         </fileSet>
         <fileSet>
             <directory>target/classes</directory>
-            <outputDirectory></outputDirectory>
+            <outputDirectory>classes</outputDirectory>
             <includes>
                 <include>**/*</include>
             </includes>
@@ -89,7 +75,7 @@
         </dependencySet>
         
         <dependencySet>
-            <!--<outputDirectory>lib</outputDirectory>-->
+            <outputDirectory>classes</outputDirectory>
             <useTransitiveFiltering>true</useTransitiveFiltering>
             <useTransitiveDependencies>true</useTransitiveDependencies>
             <useStrictFiltering>false</useStrictFiltering>
