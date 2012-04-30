@@ -7,6 +7,7 @@
             </group>
             <group caption="General" id="general">
                 <enum allowsCustom="false" required="true" supportsExpressions="false" description="Version of the Activiti BPM Engine" caption="Version" name="version">
+                    <option value="5.9"/>
                     <option value="5.8"/>
                     <option value="5.7"/>
                     <option value="5.6"/>
