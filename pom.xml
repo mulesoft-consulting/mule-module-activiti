@@ -6,15 +6,16 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mule-module-activiti-parent</artifactId>
-    <version>3.2.2</version>
+    <version>3.3.0</version>
     <groupId>org.mule.modules</groupId>
     <packaging>pom</packaging>
     <name>Activiti</name>
     <description>Activiti</description>
 
     <properties>
-        <mule.version>3.2.2</mule.version>
+        <mule.version>3.3.0</mule.version>
         <activiti.version>5.8</activiti.version>
+        <jdk.version>1.6.0_31</jdk.version>
     </properties>
 
     <scm>
@@ -91,7 +92,7 @@
           <dependency>
               <groupId>org.springframework</groupId>
               <artifactId>spring-jdbc</artifactId>
-              <version>3.0.3.RELEASE</version>
+              <version>3.1.1.RELEASE</version>
               <scope>test</scope>
           </dependency>
           

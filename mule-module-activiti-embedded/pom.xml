@@ -7,13 +7,13 @@
     <parent>
         <artifactId>mule-module-activiti-parent</artifactId>
         <groupId>org.mule.modules</groupId>
-        <version>3.2.2</version>
+        <version>3.3.0</version>
         <relativePath>..</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mule-module-activiti-embedded</artifactId>
-    <version>3.2.2</version>
+    <version>3.3.0</version>
     <groupId>org.mule.modules</groupId>
     <packaging>jar</packaging>
     <name>Activiti Embedded</name>
@@ -21,13 +21,20 @@
 
     <dependencies>
         <dependency>
+          <groupId>org.mule</groupId>
+          <artifactId>mule-core</artifactId>
+          <version>${mule.version}</version>
+        </dependency>
+        <dependency>        
             <groupId>org.mule.tests</groupId>
             <artifactId>mule-tests-functional</artifactId>
+            <version>${mule.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-scripting</artifactId>
+            <version>${mule.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -47,6 +54,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
+            <version>3.1.1.RELEASE</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -74,8 +82,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                     <encoding>ISO-8859-1</encoding>
                 </configuration>
             </plugin>
@@ -293,7 +301,7 @@
 
         <repository>
             <id>Activiti</id>
-            <url>http://maven.alfresco.com/nexus/content/repositories/activiti/</url>
+            <url>https://maven.alfresco.com/nexus/content/repositories/activiti</url>
         </repository>
 
         <repository>
