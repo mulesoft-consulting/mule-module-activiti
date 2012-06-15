@@ -15,7 +15,7 @@
     <properties>
         <mule.version>3.3.0</mule.version>
         <activiti.version>5.8</activiti.version>
-        <jdk.version>1.6.0_31</jdk.version>
+        <jdk.version>1.6</jdk.version>
     </properties>
 
     <scm>
@@ -26,42 +26,35 @@
 
     <dependencyManagement>
       <dependencies>
-
-          <dependency>
-              <groupId>org.mule.modules</groupId>
-              <artifactId>mule-module-activiti-core</artifactId>
-              <version>${version}</version>
-          </dependency>
-          <dependency>
-              <groupId>org.mule.modules</groupId>
-              <artifactId>mule-module-activiti-test</artifactId>
-              <version>${version}</version>
-          </dependency>
-          
           <dependency>
               <groupId>org.mule</groupId>
               <artifactId>mule-core</artifactId>
               <version>${mule.version}</version>
+              <scope>provided</scope>
           </dependency>
           <dependency>
               <groupId>org.mule.transports</groupId>
               <artifactId>mule-transport-http</artifactId>
               <version>${mule.version}</version>
+              <scope>provided</scope>
           </dependency>
           <dependency>
               <groupId>org.mule.transports</groupId>
               <artifactId>mule-transport-vm</artifactId>
               <version>${mule.version}</version>
+              <scope>provided</scope>
           </dependency>
           <dependency>
               <groupId>org.mule.transports</groupId>
               <artifactId>mule-transport-jdbc</artifactId>
               <version>${mule.version}</version>
+              <scope>provided</scope>
           </dependency>
           <dependency>
               <groupId>org.mule.modules</groupId>
               <artifactId>mule-module-json</artifactId>
               <version>${mule.version}</version>
+              <scope>provided</scope>
           </dependency>
           <dependency>
               <groupId>org.mule.modules</groupId>
@@ -121,6 +114,6 @@
         <module>mule-module-activiti-core</module>
         <module>mule-module-activiti-test</module>
         <module>mule-module-activiti-embedded</module>
-        <module>mule-module-activiti-remote</module>
+<!--        <module>mule-module-activiti-remote</module> -->
     </modules>
 </project>

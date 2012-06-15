@@ -19,7 +19,14 @@ import org.mule.api.client.MuleClient;
 import org.mule.api.transport.PropertyScope;
 import org.mule.module.activiti.ActivitiTestUtils;
 import org.mule.module.activiti.action.model.ProcessInstance;
-import org.mule.tck.FunctionalTestCase;
+import org.mule.tck.junit4.FunctionalTestCase;
+
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class CreateProcessActionTestCase extends FunctionalTestCase
 {
@@ -27,9 +34,10 @@ public class CreateProcessActionTestCase extends FunctionalTestCase
     @Override
     protected String getConfigResources()
     {
-        return "org/mule/module/activiti/action/embedded/create-process.xml";
+        return "src/test/resources/org/mule/module/activiti/action/embedded/create-process.xml";
     }
 
+    @Test
     public void testCreateProcess() throws Exception
     {
         MuleClient client = muleContext.getClient();

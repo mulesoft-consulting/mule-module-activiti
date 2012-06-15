@@ -23,6 +23,7 @@
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-activiti-core</artifactId>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>org.mule.tests</groupId>
@@ -269,7 +270,7 @@
             </snapshots>
         </repository>
     </repositories>
-
+<!--
     <profiles>
         <profile>
             <id>it</id>
@@ -346,5 +347,5 @@
             </build>
         </profile>
     </profiles>
-
+-->
 </project>
